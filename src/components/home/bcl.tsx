@@ -7,11 +7,14 @@ export default class BCL extends Component<{ value: BridgeBCL }> {
         super(props);
     }
 
+    componentDidMount() {
+    }
+
     render() {
         return (
             <>
                 <div>111</div>
-                <div>qqq</div>
+                <div>qq11q</div>
             </>
         );
     }

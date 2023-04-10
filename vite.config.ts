@@ -2,7 +2,6 @@ import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 import vitePluginImp from 'vite-plugin-imp'
 
-// https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
         react(),
@@ -19,14 +18,6 @@ export default defineConfig({
         alias: {
             '@': '/src'
         }
-    },
-    css: {
-        preprocessorOptions: {
-            less: {
-                javascriptEnabled: true,
-                additionalData: '@root-entry-name: default;',
-            },
-        },
     },
 
 })
