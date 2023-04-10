@@ -1,0 +1,112 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html, body, #root, #mainBox {
+  height: 100%;
+  width: 100%;
+  background-color: #03044a;
+}
+
+
+$headerHeight: 60px;
+
+#mainBox {
+  .Header {
+    width: 100%;
+    height: $headerHeight;
+    line-height: $headerHeight;
+    color: #75deef;
+    font-size: 30px;
+    letter-spacing: 10px;
+    text-align: center;
+    background-color: #03044a;
+
+  }
+
+  .Container {
+    width: 100%;
+    height: calc(100% - $headerHeight);
+    padding: 10px;
+    // 选取子第一个div
+    > div:first-child {
+
+    }
+
+    .content {
+      width: 100%;
+      margin-top: 5%;
+      height: 40%;
+      border: 1px solid #0d2451;
+      position: relative;
+
+      .title {
+        position: absolute;
+        display: inline-block;
+        color: #6EDDF1;
+        background: #14418E;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 15px;
+        padding: 5px 14px;
+        background: radial-gradient(3rem 0.9rem ellipse, rgba(7, 9, 34, .8) 60%, #154391);
+      }
+
+      .angle1 {
+        display: inline-block;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 0;
+        left: 0;
+        border-top: 1px solid #1C5AB3;
+        border-left: 1px solid #1C5AB3;
+
+      }
+
+      .angle2 {
+        display: inline-block;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 0;
+        right: 0;
+        border-top: 1px solid #1C5AB3;
+        border-right: 1px solid #1C5AB3;
+
+      }
+
+      .angle3 {
+        display: inline-block;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        bottom: 0;
+        left: 0;
+        border-bottom: 1px solid #1C5AB3;
+        border-left: 1px solid #1C5AB3;
+
+      }
+
+      .angle4 {
+        display: inline-block;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        bottom: 0;
+        right: 0;
+        border-bottom: 1px solid #1C5AB3;
+        border-right: 1px solid #1C5AB3;
+
+      }
+    }
+
+    .bcl {
+      width: 100%;
+
+      height: 300px;
+    }
+  }
+
+}
