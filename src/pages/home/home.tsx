@@ -1,24 +1,55 @@
-import React from "react";
-import CryptoJS from "crypto-js";
-import {Message, ToMessage} from "../../model/message";
+import React, {useEffect} from "react";
+
 import Left from "../../components/home/left";
 import {Col, Row} from "antd";
-import { BridgeBCL } from "../../model/bridge";
+import {BridgeBCL} from "../../model/bridge";
 
 interface State {
     bridge_bcl: BridgeBCL;
 
 }
 
-const Home= () => {
-    // 接收props
+const Home = () => {
     const [state, setState] = React.useState<State>({
-        bridge_bcl: new BridgeBCL
+        bridge_bcl: {
+            bcl: 90,
+            bsl: 88,
+            deck: {
+                bcl: 90,
+                bsl: 88,
+            },
+            sup: {
+                bcl: 76,
+                bsl: 65,
+                sups: [],
+            },
+            sub: {
+                bcl: 78,
+                bsl: 45,
+                piers: [],
+                abus: [],
+            }
+        }
     });
+    useEffect(() => {
+        // 每一秒更新一次数据
+        const timer = setInterval(() => {
+            setState(prevState => ({
+                bridge_bcl: {
+                    ...prevState.bridge_bcl,
+                    bsl: prevState.bridge_bcl.bsl + 1
+                }
+            }));
+        }, 1000);
+        return () => clearInterval(timer);
+
+    }, [state.bridge_bcl.bsl])
+
+
     return (
         <div id="mainBox">
             <div className="Header">
-                智慧桥---城市桥梁安全技术评估系统可视终端
+                可视终端
             </div>
             <Row className="Container">
                 <Col span={18}>

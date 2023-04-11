@@ -39,11 +39,15 @@ export class Sup {
 }
 
 export class BridgeBCL {
+    bcl: number;
+    bsl: number;
     deck: Deck;
     sub: Sub;
     sup: Sup;
 
     constructor() {
+        this.bcl = 0;
+        this.bsl = 0;
         this.deck = new Deck();
         this.sub = new Sub();
         this.sup = new Sup();
