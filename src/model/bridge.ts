@@ -54,3 +54,13 @@ export class BridgeBCL {
     }
 
 }
+export class Item {
+    label: string;
+    type: string;
+    value: number;
+    constructor() {
+        this.label=""
+        this.type=""
+        this.value=0
+    }
+}

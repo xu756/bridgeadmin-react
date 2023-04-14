@@ -1,91 +1,59 @@
-import React, { Component } from "react";
-import { Col, Row } from "antd";
+import React, {useEffect, useState} from "react";
+import {Col, Row} from "antd";
 import BCL from "./bcl";
-import { BridgeBCL } from "../../model/bridge";
+import {BridgeBCL, Item} from "../../model/bridge";
 
 interface Props {
     bcl: BridgeBCL;
 }
 
 interface State {
-    BclData: Array<any>;
+    BclData: Item[];
 }
 
-class Left extends Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            BclData: [],
-        };
-    }
+const Left = (prop: Props) => {
+    const [data, SetData] = useState<State>({
+        BclData: []
+    })
 
-    generateData = () => {
-        const { bcl } = this.props;
-        const data = [
-            {
-                label: "全桥",
-                type: "bcl",
-                value: bcl.bcl,
-            },
-            {
-                label: "全桥",
-                type: "bsl",
-                value: bcl.bsl,
-            },
-            {
-                label: "桥面",
-                type: "bcl",
-                value: bcl.deck.bcl,
-            },
-            {
-                label: "桥面",
-                type: "bsl",
-                value: bcl.deck.bsl,
-            },
-            {
-                label: "上部",
-                type: "bcl",
-                value: bcl.sup.bcl,
-            },
-            {
-                label: "上部",
-                type: "bsl",
-                value: bcl.sup.bsl,
-            },
-            {
-                label: "下部",
-                type: "bcl",
-                value: bcl.sub.bcl,
-            },
-            {
-                label: "下部",
-                type: "bsl",
-                value: bcl.sub.bsl,
-            },
-        ];
-        this.setState({ BclData: data });
-    };
-
-    componentDidMount() {
-        this.generateData();
-    }
-
-    componentDidUpdate(prevProps: Props) {
-        if (this.props.bcl !== prevProps.bcl) {
-            this.generateData();
+    useEffect(() => {
+        const time = setTimeout(() => {
+            SetData({
+                BclData: [
+                    {
+                        label: '全桥',
+                        type: 'bcl',
+                        value: prop.bcl.bcl,        //需要更新的数据
+                    },
+                    {
+                        label: '全桥',
+                        type: 'bsl',
+                        value: prop.bcl.bsl,
+                    },
+                    {
+                        label: '桥面',
+                        type: 'bcl',
+                        value: prop.bcl.deck.bcl,
+                    },
+                    {
+                        label: '桥面',
+                        type: 'bsl',
+                        value: prop.bcl.deck.bsl,
+                    },
+                ]
+            });
+        }, 1000)
+        return () => {
+            clearTimeout(time)
         }
-    }
-
-    render() {
-        return (
-            <Row>
-                <Col span={8}>
-                    <BCL value={this.state.BclData} />
-                </Col>
-                <Col span={16}></Col>
-            </Row>
-        );
-    }
+    }, [prop])
+    return (
+        <Row>
+            <Col span={8}>
+                <BCL values={data.BclData}/>
+            </Col>
+            <Col span={16}></Col>
+        </Row>
+    )
 }
-
-export default Left;
+export default Left

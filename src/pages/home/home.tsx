@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 
 import Left from "../../components/home/left";
-import {Col, Row} from "antd";
+import {Button, Col, Row} from "antd";
 import {BridgeBCL} from "../../model/bridge";
 
 interface State {
@@ -31,19 +31,24 @@ const Home = () => {
             }
         }
     });
-    useEffect(() => {
-        // 每一秒更新一次数据
-        const timer = setInterval(() => {
-            setState(prevState => ({
-                bridge_bcl: {
-                    ...prevState.bridge_bcl,
-                    bsl: prevState.bridge_bcl.bsl + 1
-                }
-            }));
-        }, 1000);
-        return () => clearInterval(timer);
 
-    }, [state.bridge_bcl.bsl])
+    const UpdateData = () => {
+        setState({
+            bridge_bcl: {
+                ...state.bridge_bcl,
+                bsl: state.bridge_bcl.bsl + 1,
+
+            }
+        })
+    }
+    useEffect(() => {
+        const timer = setInterval(() => {
+            UpdateData()
+        }, 2000)
+        return () => {
+            clearInterval(timer)
+        }
+    }, [state],)
 
 
     return (
@@ -55,7 +60,9 @@ const Home = () => {
                 <Col span={18}>
                     <Left bcl={state.bridge_bcl}/>
                 </Col>
-                <Col span={6}>col-6</Col>
+                <Col span={6}>
+                    <Button type="primary" onClick={UpdateData}>Primary Button</Button>
+                </Col>
             </Row>
         </div>
     );

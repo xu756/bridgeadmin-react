@@ -1,83 +1,59 @@
-import React, {Component} from 'react';
-import {Bar} from '@ant-design/plots';
-import {BridgeBCL} from "../../model/bridge";
+import React, {useState, useEffect} from 'react';
+import {Bar, Plot} from '@ant-design/plots';
+import {Button} from 'antd';
+import {Item} from "../../model/bridge";
 
-let config: any = {
-    renderer: 'canvas',
-    isGroup: true,
-    xField: 'value',
-    yField: 'label',
-    seriesField: 'type',
-    dodgePadding: 4,
-    colorField: 'type', // 部分图表使用 seriesField
-    color: ['#5B8FF9', '#5AD8A6'],
-    label: {
-        // 可手动配置 label 数据标签位置
-        position: 'right',
-        style: {
-            fill: "#c1a4a4",
-        }
-    },
-    axis: {
-        title: {
-            text: 'BCL',
-        }
-    }
 
-}
+const BCL = (prop: {
+    values: Item[]
+}) => {　
+    const [plot, SetPlot] = useState(null)
+    useEffect(() => {
+        // @ts-ignore
+        plot && plot.changeData(prop.values);
+    }, [prop.values])
+    const config: any = {
+        renderer: 'svg',
+        isGroup: true,
+        xField: 'value',
+        yField: 'label',
+        seriesField: 'type',
+        dodgePadding: 4,
+        colorField: 'type',
+        color: ['#5B8FF9', '#5AD8A6'],
+        label: {
+            position: 'right',
+            style: {
+                fill: '#c1a4a4',
+            },
+        },
+        axis: {
+            title: {
+                text: 'BCL',
+            },
+        },
+        onReady: (p: any) => {
+            SetPlot(p)
+        },
+        data: prop.values,
+    };
 
-interface item {
-    label: string;
-    type: string;
-    value: number;
-}
 
-interface DataProps {
-    value: item[];
-}
-
-interface DataState {
-    data: item[];
-}
-
-class BCL extends Component<DataProps, DataState> {
-    constructor(props: DataProps) {
-        super(props);
-        this.state = {
-            data: [
-                {
-                    label: "全桥",
-                    type: "bcl",
-                    value: 0,
-                },
-                {
-                    label: "全桥",
-                    type: "bsl",
-                    value: 0,
-                }
-            ]
-        };
-    }
-
-    componentDidMount() {
-        this.setState({
-            data: this.props.value
-        });
-        console.log("mount");
-    }
-
-    componentDidUpdate(prevProps: DataProps) {
-        if (prevProps.value !== this.props.value) {
-            console.log("update");
-            this.setState({
-                data: this.props.value
-            });
-        }
-    }
-
-    render() {
-        return <Bar data={this.state.data} {...config} />
-    }
-}
+    return (
+        <div>
+            {
+                // 循环
+                prop.values.map((item: Item, index: number) => {
+                    return (
+                        <div key={index}>
+                            <div>{item.label}</div>
+                            <div>{item.value}</div>
+                        </div>
+                    )
+                })
+            }
+        </div>
+    );
+};
 
 export default BCL;
