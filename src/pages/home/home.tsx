@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 
 import Left from "../../components/home/left";
 import {Button, Col, Row} from "antd";
@@ -41,14 +41,6 @@ const Home = () => {
             }
         })
     }
-    useEffect(() => {
-        const timer = setInterval(() => {
-            UpdateData()
-        }, 2000)
-        return () => {
-            clearInterval(timer)
-        }
-    }, [state],)
 
 
     return (

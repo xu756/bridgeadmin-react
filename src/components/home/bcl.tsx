@@ -8,10 +8,7 @@ const BCL = (prop: {
     values: Item[]
 }) => {　
     const [plot, SetPlot] = useState(null)
-    useEffect(() => {
-        // @ts-ignore
-        plot && plot.changeData(prop.values);
-    }, [prop.values])
+
     const config: any = {
         renderer: 'svg',
         isGroup: true,
@@ -35,25 +32,19 @@ const BCL = (prop: {
         onReady: (p: any) => {
             SetPlot(p)
         },
-        data: prop.values,
+        data: [],
     };
-
+    useEffect(() => {
+        // @ts-ignore
+        plot && plot.changeData(prop.values)
+    }, [prop.values])
 
     return (
         <div>
-            {
-                // 循环
-                prop.values.map((item: Item, index: number) => {
-                    return (
-                        <div key={index}>
-                            <div>{item.label}</div>
-                            <div>{item.value}</div>
-                        </div>
-                    )
-                })
-            }
+            <Bar {...config}/>
         </div>
     );
-};
+}
+
 
 export default BCL;
