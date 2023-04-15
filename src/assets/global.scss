@@ -3,26 +3,25 @@
   margin: 0;
 }
 
-body, #root {
+html, body, #root, #mainBox {
   height: 100%;
-
+  width: 100%;
+  background: url("../assets/images/bg.png") no-repeat 100%;
+  background-size: 100% 100%;
 }
 
-$headerHeight: 3rem;
+
+$headerHeight: 60px;
 
 #mainBox {
 
-  width: 120rem;
-  height: 100%;
-  background: url("../assets/images/bg.png") no-repeat center center;
-  background-size: 100% 100%;
 
   .Header {
     width: 100%;
     height: $headerHeight;
     line-height: $headerHeight;
     color: #75deef;
-    font-size: $headerHeight/1.1;
+    font-size: 30px;
     letter-spacing: 10px;
     text-align: center;
 

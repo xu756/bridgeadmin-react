@@ -1,14 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {memo, useEffect, useRef} from 'react';
 import {Bar, Plot} from '@ant-design/plots';
-import {Button} from 'antd';
-import {Item} from "../../model/bridge";
+import {BridgeBCL, Item} from "../../model/bridge";
 
+interface BclProps {
+    data: BridgeBCL;
+}
 
-const BCL = (prop: {
-    values: Item[]
-}) => {　
-    const [plot, SetPlot] = useState(null)
-
+const BCL = memo(({data}: BclProps) => {
+    const plotRef = useRef<any>(null);
     const config: any = {
         renderer: 'svg',
         isGroup: true,
@@ -29,22 +28,44 @@ const BCL = (prop: {
                 text: 'BCL',
             },
         },
-        onReady: (p: any) => {
-            SetPlot(p)
-        },
         data: [],
+        onReady: (plot: any) => {
+            plotRef.current = plot;
+        },
     };
     useEffect(() => {
-        // @ts-ignore
-        plot && plot.changeData(prop.values)
-    }, [prop.values])
+        if (plotRef.current) {
+            plotRef.current.changeData([
+                {
+                    label: "全桥",
+                    type: "bcl",
+                    value: data.bcl,
+                },
+                {
+                    label: "全桥",
+                    type: "bsl",
+                    value: data.bsl,
+                },
+                {
+                    label: "桥面",
+                    type: "bcl",
+                    value: data.deck.bcl,
+                },
+                {
+                    label: "桥面",
+                    type: "bsl",
+                    value: data.deck.bsl,
+                },
+            ]);
+        }
+    }, [data]);
 
     return (
         <div>
             <Bar {...config}/>
         </div>
     );
-}
+});
 
 
 export default BCL;

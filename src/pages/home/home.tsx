@@ -1,62 +1,49 @@
-import React, {useEffect, useRef} from "react";
-
-import Left from "../../components/home/left";
+import {BridgeBCL, LeftProps} from "../../model/bridge";
+import React, {useRef} from "react";
 import {Button, Col, Row} from "antd";
-import {BridgeBCL} from "../../model/bridge";
+import Left from "../../components/home/left";
 
-interface State {
-    bridge_bcl: BridgeBCL;
-
+interface HomeState {
+    LeftData: LeftProps;
 }
 
+export const LeftContext = React.createContext<LeftProps>({
+    bridge_bcl: new BridgeBCL(),
+});
+
 const Home = () => {
-    const [state, setState] = React.useState<State>({
-        bridge_bcl: {
-            bcl: 90,
-            bsl: 88,
-            deck: {
-                bcl: 90,
-                bsl: 88,
-            },
-            sup: {
-                bcl: 76,
-                bsl: 65,
-                sups: [],
-            },
-            sub: {
-                bcl: 78,
-                bsl: 45,
-                piers: [],
-                abus: [],
-            }
-        }
+    const [leftData, setLeftData] = React.useState<LeftProps>({
+        bridge_bcl: new BridgeBCL(),
     });
 
-    const UpdateData = () => {
-        setState({
+    const updateData = () => {
+        setLeftData((prevState) => ({
+            ...prevState,
             bridge_bcl: {
-                ...state.bridge_bcl,
-                bsl: state.bridge_bcl.bsl + 1,
-
-            }
-        })
-    }
-
+                ...prevState.bridge_bcl,
+                bcl: prevState.bridge_bcl.bcl + 1,
+            },
+        }));
+    };
 
     return (
         <div id="mainBox">
-            <div className="Header">
-                可视终端
-            </div>
+            <div className="Header">可视终端</div>
             <Row className="Container">
                 <Col span={18}>
-                    <Left bcl={state.bridge_bcl}/>
+                    <LeftContext.Provider
+                        value={{bridge_bcl: leftData.bridge_bcl}}
+                    >
+                        <Left/>
+                    </LeftContext.Provider>
                 </Col>
                 <Col span={6}>
-                    <Button type="primary" onClick={UpdateData}>Primary Button</Button>
+                    <Button type="primary" onClick={updateData}>
+                        Primary Button
+                    </Button>
                 </Col>
             </Row>
         </div>
     );
-}
+};
 export default Home;

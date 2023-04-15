@@ -64,3 +64,6 @@ export class Item {
         this.value=0
     }
 }
+export interface LeftProps {
+    bridge_bcl: BridgeBCL;
+}
