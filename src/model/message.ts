@@ -1,13 +1,15 @@
 import CryptoJS from "crypto-js";
 
-export class Message {
-    msg_type: string;
-    content: any;
+export class WsData {
+    code: number;
+    bridge_id: number;
+    data: any;
     timestamp: number;
 
     constructor() {
+        this.code = 0;
+        this.bridge_id = 1;
         this.timestamp = Date.now()
-        this.msg_type = "msg"
     }
 
     // 转换为二进制

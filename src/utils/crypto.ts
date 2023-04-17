@@ -1,5 +1,5 @@
 import CryptoJS from "crypto-js";
-import {Message} from "../model/message";
+import {WsData} from "../model/message";
 
 // 定义接口类型，根据需要可自行定义，此处供参考
 export interface CrypotoType {
@@ -16,7 +16,7 @@ export default class Crypoto implements CrypotoType {
     }
 
     /** CBC加密 */
-    encryptCBC(msg: Message): Blob {
+    encryptCBC(msg: WsData): Blob {
 
         const srcs = CryptoJS.enc.Utf8.parse(JSON.stringify(msg));
         const encrypted = CryptoJS.AES.encrypt(srcs, this.keyHex, {
@@ -52,7 +52,7 @@ export default class Crypoto implements CrypotoType {
             padding: CryptoJS.pad.Pkcs7,
         });
         const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
-        return JSON.parse(decryptedStr) as Message;
+        return JSON.parse(decryptedStr) as WsData;
     }
 
     private async blobToArrayBuffer(blob: Blob): Promise<ArrayBuffer> {

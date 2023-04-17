@@ -1,29 +1,29 @@
-import { Message } from "../model/message";
+import { WsData } from "../model/message";
 import Crypoto from "../utils/crypto";
 
 class WebSocketService {
     private ws: WebSocket | null = null;
     private readonly url: string;
-    public msg: Message;
+    public data: WsData;
     private crypto: Crypoto;
     public event = new EventTarget();
 
     constructor(url: string) {
         this.url = url;
         this.crypto = new Crypoto();
-        this.msg = new Message();
+        this.data = new WsData();
     }
 
     connect(): void {
         this.ws = new WebSocket(this.url);
         this.ws.onopen = () => {
             console.log("WebSocket connected");
-            ws.send(this.crypto.encryptCBC(new Message()));
+            ws.send(this.crypto.encryptCBC(new WsData()));
         };
         this.ws.onmessage = (e) => {
-            this.crypto.decryptCBC(e.data).then((msg: Message) => {
-                this.msg = msg;
-                this.event.dispatchEvent(new CustomEvent("message", { detail: this.msg }));
+            this.crypto.decryptCBC(e.data).then((data: WsData) => {
+                this.data = data;
+                this.event.dispatchEvent(new CustomEvent("message", { detail: this.data }));
             });
         };
         this.ws.onclose = () => {
