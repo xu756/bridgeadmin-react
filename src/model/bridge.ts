@@ -4,8 +4,8 @@ export class Deck {
     bsl: number;
 
     constructor() {
-        this.bcl = 0;
-        this.bsl = 0;
+        this.bcl = 100;
+        this.bsl = 100;
     }
 
 }
@@ -18,8 +18,8 @@ export class Sub {
     abus: Array<number>
 
     constructor() {
-        this.bcl = 0;
-        this.bsl = 0;
+        this.bcl = 100;
+        this.bsl = 100;
         this.piers = [];
         this.abus = [];
     }
@@ -32,8 +32,8 @@ export class Sup {
     sups: Array<number>;
 
     constructor() {
-        this.bcl = 0;
-        this.bsl = 0;
+        this.bcl = 100;
+        this.bsl = 100;
         this.sups = [];
     }
 }
@@ -46,8 +46,8 @@ export class BridgeBCL {
     sup: Sup;
 
     constructor() {
-        this.bcl = 0;
-        this.bsl = 0;
+        this.bcl = 100;
+        this.bsl = 100;
         this.deck = new Deck();
         this.sub = new Sub();
         this.sup = new Sup();
@@ -61,7 +61,7 @@ export class Item {
     constructor() {
         this.label=""
         this.type=""
-        this.value=0
+        this.value=100
     }
 }
 export interface LeftProps {

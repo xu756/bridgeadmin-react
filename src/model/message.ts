@@ -1,4 +1,5 @@
 import CryptoJS from "crypto-js";
+
 export class Message {
     msg_type: string;
     content: any;
@@ -18,19 +19,6 @@ export class Message {
 }
 
 // 二进制转换为 Message
-export const ToMessage = (data: Uint8Array): Message => {
-    if (data.length === 0) {
-        return new Message();
-    }
-    const dataAsNumberArray = Array.from(data);
-    const msgHex = CryptoJS.enc.Hex.stringify(CryptoJS.lib.WordArray.create(dataAsNumberArray));
-    const msgString = CryptoJS.enc.Utf8.stringify(CryptoJS.enc.Utf16.parse(msgHex));
-    if (msgString === "") {
-        return new Message();
-    }
-    return JSON.parse(msgString) as Message;
-}
-
 
 
 function hexToArrayBuffer(hex: string): ArrayBuffer {

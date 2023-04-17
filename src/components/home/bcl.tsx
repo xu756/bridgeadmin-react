@@ -3,11 +3,10 @@ import {Bar, Plot} from '@ant-design/plots';
 import {BridgeBCL, Item} from "../../model/bridge";
 
 interface BclProps {
-    data: BridgeBCL;
+    onReady?: (plot: Plot<any>) => void;
 }
 
-const BCL = memo(({data}: BclProps) => {
-    const plotRef = useRef<any>(null);
+const BCL = (({onReady}: BclProps) => {
     const config: any = {
         renderer: 'svg',
         isGroup: true,
@@ -29,36 +28,8 @@ const BCL = memo(({data}: BclProps) => {
             },
         },
         data: [],
-        onReady: (plot: any) => {
-            plotRef.current = plot;
-        },
+        onReady: onReady
     };
-    useEffect(() => {
-        if (plotRef.current) {
-            plotRef.current.changeData([
-                {
-                    label: "全桥",
-                    type: "bcl",
-                    value: data.bcl,
-                },
-                {
-                    label: "全桥",
-                    type: "bsl",
-                    value: data.bsl,
-                },
-                {
-                    label: "桥面",
-                    type: "bcl",
-                    value: data.deck.bcl,
-                },
-                {
-                    label: "桥面",
-                    type: "bsl",
-                    value: data.deck.bsl,
-                },
-            ]);
-        }
-    }, [data]);
 
     return (
         <div>
