@@ -38,7 +38,7 @@ export class Sup {
     }
 }
 
-export class BridgeBCL {
+export class BclAndBsl{
     bcl: number;
     bsl: number;
     deck: Deck;
@@ -52,18 +52,4 @@ export class BridgeBCL {
         this.sub = new Sub();
         this.sup = new Sup();
     }
-
-}
-export class Item {
-    label: string;
-    type: string;
-    value: number;
-    constructor() {
-        this.label=""
-        this.type=""
-        this.value=100
-    }
-}
-export interface LeftProps {
-    bridge_bcl: BridgeBCL;
 }

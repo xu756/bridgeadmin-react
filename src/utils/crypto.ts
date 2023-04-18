@@ -1,5 +1,5 @@
 import CryptoJS from "crypto-js";
-import {WsData} from "../model/message";
+import {WsData} from "../model/ws";
 
 // 定义接口类型，根据需要可自行定义，此处供参考
 export interface CrypotoType {

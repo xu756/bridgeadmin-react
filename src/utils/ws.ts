@@ -1,5 +1,6 @@
-import { WsData } from "../model/message";
+import {WsData} from "../model/ws";
 import Crypoto from "../utils/crypto";
+import {BclAndBsl} from "../model/bridge";
 
 class WebSocketService {
     private ws: WebSocket | null = null;
@@ -22,8 +23,17 @@ class WebSocketService {
         };
         this.ws.onmessage = (e) => {
             this.crypto.decryptCBC(e.data).then((data: WsData) => {
-                this.data = data;
-                this.event.dispatchEvent(new CustomEvent("message", { detail: this.data }));
+                // this.data = data;
+                // this.event.dispatchEvent(new CustomEvent("message", { detail: this.data }));
+                switch (data.code) {
+                    case 0:
+                        console.log("心跳包");
+                        break;
+                    case 1:
+                        this.event.dispatchEvent(new CustomEvent("bcl", {detail: data.data as BclAndBsl}));
+                        break;
+                    case 2:
+                }
             });
         };
         this.ws.onclose = () => {

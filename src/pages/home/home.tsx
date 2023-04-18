@@ -1,47 +1,29 @@
 // src/pages/home/index.tsx
 
-import React, {useRef, useState, Dispatch, SetStateAction, useEffect, useLayoutEffect} from "react";
-import {Button, Col, Row} from "antd";
+import React, {useEffect} from "react";
+import {Col, Row} from "antd";
 import Left from "../../components/home/left";
-import {BridgeBCL, LeftProps} from "../../model/bridge";
 import ws from "../../utils/ws";
-import {WsData} from "../../model/message";
+import BCL from "../../components/home/bcl";
+
 const Home = () => {
-    const [leftData, setLeftData] = useState<LeftProps>({
-        bridge_bcl: new BridgeBCL(),
-    });
-    const updateData = () => {
-        setLeftData((prevData) => ({
-            ...prevData,
-            bridge_bcl: {
-                ...prevData.bridge_bcl,
-                bcl: prevData.bridge_bcl.bcl + 1,
-            },
-        }));
-    };
 
     useEffect(() => {
         ws.connect()
-        // const handleMessage = (e: any) => {
-        //     setWsData(e.detail);
-        //     updateData();
-        // };
-        // ws.event.addEventListener("message", handleMessage);
-        // return () => {
-        //     ws.event.removeEventListener("message", handleMessage);
-        //     ws.disconnect()
-        // };
+
     }, []);
     return (
         <div id="mainBox">
             <div className="Header">可视终端</div>
             <Row className="Container">
-                <Col span={18}>
+                <Col className="card" span={5}>
+                    <div id="l1"><BCL/></div>
+                    <div id="l2"></div>
+                    <div id="l3"></div>
 
-                        <Left/>
                 </Col>
-                <Col span={6}>
-                </Col>
+                <Col className="card" span={14}>中</Col>
+                <Col className="card" span={5}>右</Col>
             </Row>
         </div>
     );

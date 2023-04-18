@@ -1,18 +1,22 @@
 import React, {memo, useEffect, useRef} from 'react';
 import {Bar, Plot} from '@ant-design/plots';
-import {BridgeBCL, Item} from "../../model/bridge";
+import {BclAndBsl} from "../../model/bridge";
 import ws from "../../utils/ws";
 
 
 const BCL = () => {
     let plot: Plot<any>;
-    const config: any = {
+    let w = 0;
+    let h = 0;
+    let config: any = {
+        width: w,
+        height: h,
         renderer: 'svg',
         isGroup: true,
         xField: 'value',
         yField: 'label',
         seriesField: 'type',
-        dodgePadding: 4,
+        dodgePadding: 2,
         colorField: 'type',
         color: ['#5B8FF9', '#5AD8A6'],
         label: {
@@ -21,18 +25,21 @@ const BCL = () => {
                 fill: '#c1a4a4',
             },
         },
-        axis: {
-            title: {
-                text: 'BCL',
-            },
+        xAxis: {
+            grid: null,
+            visible: false,
+
         },
+        yAxis: {
+            grid: null, // 去掉刻度线
+        },
+
         data: [],
         onReady: (p: any) => {
             plot = p;
         }
     };
-    const bridge_bcl: BridgeBCL = new BridgeBCL();
-    const UpdateData = () => {
+    const UpdateData = (bridge_bcl: BclAndBsl) => {
         plot && plot.changeData([{
             label: '全桥',
             value: bridge_bcl.bcl,
@@ -68,17 +75,17 @@ const BCL = () => {
         }]);
     }
     useEffect(() => {
-        console.log(plot)
-
+        w = document.getElementById('l1')!.clientWidth;
+        h = document.getElementById('l1')!.clientHeight;
+        plot && plot.changeSize(w, h);
         const handelBCL = (e: Event) => {
-            const d: any = (e as CustomEvent).detail;
-            bridge_bcl.bcl++;
-            UpdateData();
+            const d: any = (e as CustomEvent).detail as BclAndBsl;
+            UpdateData(d);
         }
 
-        ws.event.addEventListener("message", handelBCL);
+        ws.event.addEventListener("bcl", handelBCL);
         return () => {
-            ws.event.removeEventListener("message", handelBCL);
+            ws.event.removeEventListener("bcl", handelBCL);
         }
     }, []);
 
