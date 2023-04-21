@@ -6,14 +6,14 @@
 html, body, #root, #mainBox {
   height: 100%;
   width: 100%;
-  background: url("../assets/images/bg.png") no-repeat 100%;
-  background-size: 100% 100%;
 }
 
 
 $headerHeight: 60px;
 
 #mainBox {
+  background: url("../assets/images/bg.png") no-repeat 100%;
+  background-size: 100% 100%;
 
 
   .Header {
@@ -21,7 +21,7 @@ $headerHeight: 60px;
     height: $headerHeight;
     line-height: $headerHeight;
     color: #75deef;
-    font-size: 30px;
+    font-size: 20px;
     letter-spacing: 10px;
     text-align: center;
 
@@ -34,78 +34,44 @@ $headerHeight: 60px;
 
     .card {
       padding: 10px;
+    }
+
+    .l {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-align-content: space-between;
+      align-content: space-between;
+
       #l1 {
         width: 100%;
-        height: 40%;
+        height: 35%;
+      }
+
+      #l2 {
+        width: 100%;
+        height: 24%;
+      }
+
+      #l3 {
+        width: 100%;
+        height: 38%;
       }
     }
 
-    .content {
-      width: 100%;
-      margin-top: 5%;
-      height: 40%;
-      border: 1px solid #0d2451;
-      position: relative;
 
-      .title {
-        position: absolute;
-        display: inline-block;
-        color: #6EDDF1;
-        background: #14418E;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 15px;
-        padding: 5px 14px;
-        background: radial-gradient(3rem 0.9rem ellipse, rgba(7, 9, 34, .8) 60%, #154391);
-      }
 
-      .angle1 {
-        display: inline-block;
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        top: 0;
-        left: 0;
-        border-top: 1px solid #1C5AB3;
-        border-left: 1px solid #1C5AB3;
-
-      }
-
-      .angle2 {
-        display: inline-block;
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        top: 0;
-        right: 0;
-        border-top: 1px solid #1C5AB3;
-        border-right: 1px solid #1C5AB3;
-
-      }
-
-      .angle3 {
-        display: inline-block;
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        bottom: 0;
-        left: 0;
-        border-bottom: 1px solid #1C5AB3;
-        border-left: 1px solid #1C5AB3;
-
-      }
-
-      .angle4 {
-        display: inline-block;
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        bottom: 0;
-        right: 0;
-        border-bottom: 1px solid #1C5AB3;
-        border-right: 1px solid #1C5AB3;
-
-      }
+    .content_title {
+      width: 200px;
+      height: 50px;
+      text-align: center;
+      color: #01c4f7;
+      font-size: 14px;
+      position: absolute;
+      top:0;
+      left: 50%;
+      margin-left: -100px;
     }
 
   }

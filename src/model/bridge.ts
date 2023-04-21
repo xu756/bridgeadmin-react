@@ -53,3 +53,28 @@ export class BclAndBsl{
         this.sup = new Sup();
     }
 }
+
+
+export class BridgeWeight {
+    deck: number;
+    sub: number;
+    sup: number;
+
+    constructor() {
+        this.deck = 0;
+        this.sub = 0;
+        this.sup = 0;
+    }
+}
+
+
+export class EqItem{
+    name:string;
+    time:string;
+    value:number;
+    constructor() {
+        this.name = "";
+        this.time = "";
+        this.value = 0;
+    }
+}

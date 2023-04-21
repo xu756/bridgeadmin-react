@@ -1,6 +1,6 @@
 import {WsData} from "../model/ws";
 import Crypoto from "../utils/crypto";
-import {BclAndBsl} from "../model/bridge";
+import {BclAndBsl, BridgeWeight, EqItem} from "../model/bridge";
 
 class WebSocketService {
     private ws: WebSocket | null = null;
@@ -33,6 +33,10 @@ class WebSocketService {
                         this.event.dispatchEvent(new CustomEvent("bcl", {detail: data.data as BclAndBsl}));
                         break;
                     case 2:
+                        this.event.dispatchEvent(new CustomEvent("weight", {detail: data.data as BridgeWeight}));
+                        break;
+                    case 3:
+                        this.event.dispatchEvent(new CustomEvent("equipment", {detail: data.data as EqItem[]}));
                 }
             });
         };

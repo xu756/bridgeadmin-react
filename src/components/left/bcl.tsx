@@ -2,43 +2,67 @@ import React, {memo, useEffect, useRef} from 'react';
 import {Bar, Plot} from '@ant-design/plots';
 import {BclAndBsl} from "../../model/bridge";
 import ws from "../../utils/ws";
+// @ts-ignore
+import {BorderBox1} from '@jiaminghi/data-view-react'
 
 
 const BCL = () => {
     let plot: Plot<any>;
     let w = 0;
     let h = 0;
-    let config: any = {
+    const [config, setConfig] = React.useState<any>({
         width: w,
         height: h,
         renderer: 'svg',
+        appendPadding: [10, 10, 10, 20],
         isGroup: true,
         xField: 'value',
         yField: 'label',
         seriesField: 'type',
         dodgePadding: 2,
         colorField: 'type',
-        color: ['#5B8FF9', '#5AD8A6'],
+        color: ['#00A781', '#00A9D9'],
         label: {
             position: 'right',
+            offsetX: -10,
             style: {
-                fill: '#c1a4a4',
+                fill: '#B7DDF4',
             },
         },
         xAxis: {
             grid: null,
-            visible: false,
-
+            tickLine: null,
+            line: null,
+            label: null,
+            max: 120,
+        },
+        legend: {
+            position: 'top',
+            offsetY: 10,
+            itemName: {
+                style: {
+                    fill: '#00799C',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                }
+            }
         },
         yAxis: {
-            grid: null, // 去掉刻度线
+            grid: null,
+            tickLine: null,
+            line: null,
+            label: {
+                style: {
+                    fill: '#1ccfe3',
+                }
+            },
         },
 
         data: [],
         onReady: (p: any) => {
             plot = p;
         }
-    };
+    })
     const UpdateData = (bridge_bcl: BclAndBsl) => {
         plot && plot.changeData([{
             label: '全桥',
@@ -90,9 +114,10 @@ const BCL = () => {
     }, []);
 
     return (
-        <div>
-            <Bar {...config}/>
-        </div>
+        <BorderBox1>
+            <div className="content_title">综合状况评估指数</div>
+            <Bar className="content" {...config}/>
+        </BorderBox1>
     );
 };
 
