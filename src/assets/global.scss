@@ -56,7 +56,25 @@ $headerHeight: 60px;
 
       #l3 {
         width: 100%;
-        height: 38%;
+        height: 35%;
+      }
+    }
+    .c {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-align-content: space-between;
+      align-content: space-between;
+
+      #c1 {
+        width: 100%;
+        height: 63%;
+      }
+
+      #c2 {
+        width: 100%;
+        height: 30%;
       }
     }
 

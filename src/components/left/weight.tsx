@@ -7,17 +7,13 @@ import { BorderBox1 } from '@jiaminghi/data-view-react'
 
 const Weight = () => {
     let plot: Plot<any>;
-    let w = 0;
-    let h = 0;
     const [config, setConfig] = React.useState<any>({
-        width: w,
-        height: h,
         renderer: 'svg',
         angleField: 'value',
         colorField: 'type',
         color: ['#95e1d3', '#eaffd0', '#fce38a'],
         radius: 0.8,
-        appendPadding:[10, 0, 0, 0],
+        appendPadding:[15, 0, 0, 0],
         label: {
             type: 'inner',
             offset: '-40%',
@@ -70,9 +66,6 @@ const Weight = () => {
         ]);
     }
     useEffect(() => {
-        w = document.getElementById('l2')!.clientWidth;
-        h = document.getElementById('l2')!.clientHeight;
-        plot && plot.changeSize(w, h);
         const handelBCL = (e: Event) => {
             const d: any = (e as CustomEvent).detail as BridgeWeight;
             UpdateData(d);

@@ -8,11 +8,7 @@ import {BorderBox1} from '@jiaminghi/data-view-react'
 
 const BCL = () => {
     let plot: Plot<any>;
-    let w = 0;
-    let h = 0;
     const [config, setConfig] = React.useState<any>({
-        width: w,
-        height: h,
         renderer: 'svg',
         appendPadding: [10, 10, 10, 20],
         isGroup: true,
@@ -99,9 +95,6 @@ const BCL = () => {
         }]);
     }
     useEffect(() => {
-        w = document.getElementById('l1')!.clientWidth;
-        h = document.getElementById('l1')!.clientHeight;
-        plot && plot.changeSize(w, h);
         const handelBCL = (e: Event) => {
             const d: any = (e as CustomEvent).detail as BclAndBsl;
             UpdateData(d);

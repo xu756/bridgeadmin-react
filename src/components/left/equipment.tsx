@@ -7,11 +7,7 @@ import {BorderBox1} from '@jiaminghi/data-view-react'
 
 const Equipment = () => {
     let plot: Plot<any>;
-    let w = 0;
-    let h = 0;
     const [config, setConfig] = React.useState<any>({
-        width: w,
-        height: h,
         renderer: 'svg',
         xField: 'time',
         yField: 'value',
@@ -55,12 +51,6 @@ const Equipment = () => {
                 }
             }
         },
-        animation: {
-            appear: {
-                animation: 'path-in',
-                duration: 5000,
-            },
-        },
         legend: {
             position: 'top',
             offsetY: 13,
@@ -83,9 +73,6 @@ const Equipment = () => {
         );
     }
     useEffect(() => {
-        w = document.getElementById('l3')!.clientWidth;
-        h = document.getElementById('l3')!.clientHeight;
-        plot && plot.changeSize(w, h);
         const handelBCL = (e: Event) => {
             const d: any = (e as CustomEvent).detail as EqItem[];
             UpdateData(d);
