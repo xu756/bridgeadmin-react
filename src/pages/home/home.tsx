@@ -3,10 +3,12 @@
 import React, {useEffect} from "react";
 import {Col, Row} from "antd";
 import ws from "../../utils/ws";
-import BCL from "../../components/left/bcl";
-import Weight from "../../components/left/weight";
-import Equipment from "../../components/left/equipment";
-import CenterTree from "../../components/center/tree";
+import BCL from "../../components/charts/left/bcl";
+import Weight from "../../components/charts/left/weight";
+import Equipment from "../../components/charts/left/equipment";
+import CenterTree from "../../components/charts/center/tree";
+import GroupCharts from "../../components/charts/center/groupCharts";
+import DataList from "../../components/charts/right/list";
 
 const Home = () => {
 
@@ -26,10 +28,14 @@ const Home = () => {
                 </Col>
                 <Col className="card c" span={12}>
                     <div id="c1"><CenterTree/></div>
-                    <div id="c2">2</div>
+                    <div id="c2"><GroupCharts/></div>
 
                 </Col>
-                <Col className="card" span={6}>右</Col>
+                <Col className="card r" span={6}>
+                    <div id="r1"><DataList/></div>
+                    <div id="r2">r2</div>
+                    <div id="r3">r3</div>
+                </Col>
             </Row>
         </div>
     );

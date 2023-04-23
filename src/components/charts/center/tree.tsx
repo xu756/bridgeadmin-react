@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import ws from "../../utils/ws";
+import ws from "../../../utils/ws";
 // @ts-ignore
 import {BorderBox8} from '@jiaminghi/data-view-react'
 import {DecompositionTreeGraph} from '@ant-design/graphs';
@@ -104,56 +104,63 @@ const CenterTree = () => {
                                 value: '99',
                             },
                         ],
-                        children:[
-                            {
-                                value: {
-                                    id: 'sup1',
-                                    title: '桥面铺装',
-                                    items: [
-                                        {
-                                            text: 'BCl',
-                                            value: '99',
-                                        },
-                                        {
-                                            text: 'BSl',
-                                            value: '99',
-                                        },
-                                    ],
-                                },
-                            },
-                            {
-                                value: {
-                                    id: 'deckc',
-                                    title: '桥面铺装',
-                                    items: [
-                                        {
-                                            text: 'BCl',
-                                            value: '99',
-                                        },
-                                        {
-                                            text: 'BSl',
-                                            value: '99',
-                                        },
-                                    ],
-                                },
-                            },
-                        ]
                     },
+                    children: [
+                        {
+                            value: {
+                                id: 'pier',
+                                title: '桥墩',
+                                items: [
+                                    {
+                                        text: 'BCl',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: 'BSl',
+                                        value: '99',
+                                    },
+                                ],
+                            },
+                        },
+                        {
+                            value: {
+                                id: 'abu',
+                                title: '桥台',
+                                items: [
+                                    {
+                                        text: 'BCl',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: 'BSl',
+                                        value: '99',
+                                    },
+                                ],
+                            },
+                        },
+                    ]
                 },
             ],
         };
     const stroke = '#EA2F97';
-    const config = {
+    const config:any = {
         data,
-        autoFit:false,
         style: {
             backgroundColor: '',
         },
-        // markerCfg:{
-        //     show:true,
-        // },
+        markerCfg: (cfg: any) => {
+            return {
+                position: 'right',
+                show: cfg.children?.length,
+                style: (arg: any) => {
+                    return {
+                        stroke: arg.value.percent > 0.3 ? stroke : '#1f8fff',
+                    };
+                },
+            };
+        },
         layout: {
-            getWidth:()=>{
+            getWidth: () => {
                 return 120
             }
         },
@@ -170,20 +177,22 @@ const CenterTree = () => {
                 },
             },
             items: {
+                padding: 0,
                 containerStyle: {
                     fill: '#fff',
                 },
+                sort: true,
                 style: (cfg: any, group: any, type: string) => {
                     switch (type) {
                         case 'value':
                             return {
                                 fill: '#dd1',
-                                right:0
+                                x: 75,
                             }
                         case 'text':
                             return {
                                 fill: '#aaa',
-                                textAlign: 'left'
+                                x: 10
                             }
 
                     }
@@ -196,7 +205,7 @@ const CenterTree = () => {
             },
             title: {
                 containerStyle: {
-                    fill: 'transparent',
+                    fill: '#fff',
                 },
                 style: {
                     fill: '#000',
@@ -224,16 +233,13 @@ const CenterTree = () => {
 
         },
 
-        toolbarCfg: {
-            show: true,
-        },
         menuCfg: {
             show: false,
         },
-        // level:1,
+        // level: 2,
         behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
         onReady: (graph: any) => {
-            graph.zoom(1, {x: 100, y: 300});
+            graph.zoom(1, {x: graph.get('width') / 2, y: graph.get('height') / 2});
             //设置中心节点
         }
     };
@@ -241,7 +247,6 @@ const CenterTree = () => {
         <BorderBox8>
             <DecompositionTreeGraph {...config} />
         </BorderBox8>
-
     )
 
 }

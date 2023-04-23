@@ -14,14 +14,11 @@ export class Deck {
 export class Sub {
     bcl: number;
     bsl: number;
-    piers: Array<number>;
-    abus: Array<number>
+
 
     constructor() {
         this.bcl = 100;
         this.bsl = 100;
-        this.piers = [];
-        this.abus = [];
     }
 }
 
@@ -29,12 +26,10 @@ export class Sub {
 export class Sup {
     bcl: number;
     bsl: number;
-    sups: Array<number>;
 
     constructor() {
         this.bcl = 100;
         this.bsl = 100;
-        this.sups = [];
     }
 }
 
