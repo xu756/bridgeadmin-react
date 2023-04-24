@@ -1,5 +1,5 @@
 // @ts-ignore
-import {BorderBox1} from '@jiaminghi/data-view-react'
+import {BorderBox10} from '@jiaminghi/data-view-react'
 import {ConfigProvider, Tabs} from "antd";
 import React, {useEffect} from "react";
 import {Column} from "@ant-design/charts";
@@ -162,7 +162,7 @@ export default function GroupCharts() {
     useEffect(() => {
         setConfig({...config, data: data.deck})
     }, []);
-    let activeKey='deck'
+    const [activeKey, setActiveKey] = React.useState('deck');
     const [config, setConfig] = React.useState<any>({
         data: [],
         meta: {
@@ -186,7 +186,7 @@ export default function GroupCharts() {
                     fill: '#1ccfe3',
                 }
             },
-            max: 120,
+            max: 100,
         },
         xAxis: {
             grid: null,
@@ -260,8 +260,8 @@ export default function GroupCharts() {
                 },
             }}
         >
-            <BorderBox1>
-                <div className="content_title">综合状况评估指数</div>
+            <BorderBox10>
+                <div className="content_title">组成结构BCLsi</div>
                 <Tabs
                     activeKey={activeKey}
                     className="tabs"
@@ -271,13 +271,13 @@ export default function GroupCharts() {
                     }}
                     items={items}
                     onChange={(key) => {
-                        activeKey = key
+                        setActiveKey(key)
                         // @ts-ignore
                         setConfig({...config, data: data[key]})
                     }}
                 >
                 </Tabs>
-            </BorderBox1>
+            </BorderBox10>
         </ConfigProvider>
     )
 }

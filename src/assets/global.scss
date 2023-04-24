@@ -10,21 +10,41 @@ html, body, #root, #mainBox {
 
 
 $headerHeight: 60px;
-
+$DecorationHeight: 40px;
 #mainBox {
   background: url("../assets/images/bg.png") no-repeat 100%;
   background-size: 100% 100%;
 
 
   .Header {
+    position: relative;
     width: 100%;
     height: $headerHeight;
-    line-height: $headerHeight;
-    color: #75deef;
-    font-size: 20px;
-    letter-spacing: 10px;
-    text-align: center;
 
+    .t {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: $headerHeight;
+      line-height: $headerHeight;
+      color: #75deef;
+      font-size: 20px;
+      letter-spacing: 10px;
+      text-align: center;
+    }
+
+    .time {
+      position: absolute;
+      top: 40px;
+      color: #75deef;
+      right: 50px;
+    }
+  }
+
+  .Decoration {
+    height: $DecorationHeight;
+    width: 100%;
   }
 
   .Container {
@@ -46,12 +66,12 @@ $headerHeight: 60px;
 
       #l1 {
         width: 100%;
-        height: 35%;
+        height: 24%;
       }
 
       #l2 {
         width: 100%;
-        height: 24%;
+        height: 35%;
       }
 
       #l3 {
@@ -68,14 +88,19 @@ $headerHeight: 60px;
       -webkit-align-content: space-between;
       align-content: space-between;
 
+      #c0 {
+        width: 100%;
+        height: 2%;
+      }
+
       #c1 {
         width: 100%;
-        height: 63%;
+        height: 55%;
       }
 
       #c2 {
         width: 100%;
-        height: 35%;
+        height: 40%;
 
         .tabs {
           width: calc(100% - 13px);
@@ -89,8 +114,9 @@ $headerHeight: 60px;
             height: 100%;
           }
 
-          .ant-tabs-content{
+          .ant-tabs-content {
             height: 100%;
+
             .ant-tabs-tabpane {
               height: 100%;
             }
@@ -98,16 +124,55 @@ $headerHeight: 60px;
         }
       }
     }
-    .r{
+
+    .r {
       display: -webkit-flex;
       display: flex;
       -webkit-flex-wrap: wrap;
       flex-wrap: wrap;
       -webkit-align-content: space-between;
       align-content: space-between;
+
       #r1 {
         width: 100%;
         height: 35%;
+        // 滚动条
+        .data-list {
+          width: 100%;
+          height: 100%;
+          padding: 15px;
+          text-align: center;
+          color: #14EBFF;
+          overflow: hidden;
+
+
+          .data-list-title {
+            height: 30px;
+          }
+
+          .data-list-content {
+            height: calc(100% - 30px);
+            overflow-y: scroll;
+            overflow-x: hidden;
+
+            &::-webkit-scrollbar {
+              width: 5px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+              background: #ccc; // 滑块颜色
+              border-radius: 5px; // 滑块圆角
+            }
+
+
+
+            .ant-row {
+              margin: 10px 0;
+            }
+
+          }
+        }
+
       }
 
       #r2 {
@@ -117,7 +182,7 @@ $headerHeight: 60px;
 
       #r3 {
         width: 100%;
-        height: 35%;
+        height: 30%;
       }
     }
 

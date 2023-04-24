@@ -5,36 +5,50 @@ import {Col, Row} from "antd";
 import ws from "../../utils/ws";
 import BCL from "../../components/charts/left/bcl";
 import Weight from "../../components/charts/left/weight";
-import Equipment from "../../components/charts/left/equipment";
+import Equipment from "../../components/charts/right/equipment";
 import CenterTree from "../../components/charts/center/tree";
 import GroupCharts from "../../components/charts/center/groupCharts";
 import DataList from "../../components/charts/right/list";
+import LeftInfo from "../../components/charts/left/info";
+// @ts-ignore
+import {Decoration3, Decoration1} from "@jiaminghi/data-view-react";
+import BridgeState from "../../components/charts/right/state";
 
 const Home = () => {
-
+    const [time, setTime] = React.useState(new Date().toLocaleString());
     useEffect(() => {
         ws.connect()
-
+        const timer = setInterval(() => {
+            setTime(new Date().toLocaleString())
+        }, 1000);
+        return () => {
+            clearInterval(timer);
+        }
     }, []);
     return (
         <div id="mainBox">
-            <div className="Header">城市桥梁安全技术评估系统可视化终端</div>
+            <div className="Header">
+                <div className={"t"}>城市桥梁安全技术评估系统可视化终端</div>
+                <div className={"time"}>{time}</div>
+            </div>
             <Row className="Container">
-                <Col className="card l" span={6}>
-                    <div id="l1"><BCL/></div>
-                    <div id="l2"><Weight/></div>
-                    <div id="l3"><Equipment/></div>
+                <Col className="card l" span={5}>
+                    <div id="l1"><LeftInfo/></div>
+                    <div id="l2"><BCL/></div>
+                    <div id="l3"><Weight/></div>
 
                 </Col>
-                <Col className="card c" span={12}>
+                <Col className="card c" span={14}>
+                    <div id="c0"><Decoration1 style={{width: '250px', height: '30px'}}/></div>
                     <div id="c1"><CenterTree/></div>
                     <div id="c2"><GroupCharts/></div>
 
                 </Col>
-                <Col className="card r" span={6}>
+                <Col className="card r" span={5}>
+                    <div id="r0"><Decoration3 style={{width: '250px', height: '30px'}}/></div>
                     <div id="r1"><DataList/></div>
-                    <div id="r2">r2</div>
-                    <div id="r3">r3</div>
+                    <div id="r2"><BridgeState/></div>
+                    <div id="r3"><Equipment/></div>
                 </Col>
             </Row>
         </div>

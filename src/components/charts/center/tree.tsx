@@ -27,83 +27,104 @@ const CenterTree = () => {
                     id: 'deck',
                     value: {
                         title: '桥面',
-                        percent: 0.7,
-                        items: [
-                            {
-                                text: 'BCl',
-                                value: '99',
-                            },
-                            {
-                                text: 'BSl',
-                                value: '99',
-                            },
-                        ],
+                        percent: 0.15,
                     },
                     children: [
                         {
-                            id: 'decka',
+                            id: 'deck1',
                             value: {
-                                title: '桥面铺装',
+                                title: '桥面数据',
                                 items: [
                                     {
-                                        text: '网裂或龟裂',
+                                        text: '桥面铺装',
                                         value: '99',
                                     },
                                     {
-                                        text: 'BSl',
+                                        text: '桥头平顺',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: '伸缩装置',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: '排水系统',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: '人行道',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: '栏杆或护栏',
+                                        value: '99',
+                                    },
+                                ],
+                            },
+                        }
+                    ]
+                },
+                {
+                    id: 'sup',
+                    value: {
+                        title: '上部结构',
+                        percent: 0.45,
+                    },
+                    children: [
+                        {
+                            id: 'sup1',
+                            value: {
+                                title: '#1跨',
+                                items: [
+                                    {
+                                        text: '主梁',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: '横向联系',
                                         value: '99',
                                     },
                                 ],
                             },
                         },
                         {
-                            id: 'deckb',
+                            id: 'sup2',
                             value: {
-                                title: '桥头平顺',
+                                title: '#2跨',
                                 items: [
                                     {
-                                        text: 'BCl',
+                                        text: '主梁',
                                         value: '99',
                                     },
                                     {
-                                        text: 'BSl',
+                                        text: '横向联系',
                                         value: '99',
                                     },
                                 ],
                             },
                         },
                         {
-                            id: 'deckc',
+                            id: 'sup3',
                             value: {
-                                title: '伸缩装置',
+                                title: '#3跨',
                                 items: [
                                     {
-                                        text: 'BCl',
+                                        text: '主梁',
                                         value: '99',
                                     },
                                     {
-                                        text: 'BSl',
+                                        text: '横向联系',
                                         value: '99',
                                     },
                                 ],
                             },
                         },
-                    ],
+                    ]
                 },
                 {
                     value: {
-                        title: '上部结构',
-                        percent: 0.3,
-                        items: [
-                            {
-                                text: 'BCl',
-                                value: '99',
-                            },
-                            {
-                                text: 'BSl',
-                                value: '99',
-                            },
-                        ],
+                        title: '下部结构',
+                        percent: 0.4,
                     },
                     children: [
                         {
@@ -112,11 +133,19 @@ const CenterTree = () => {
                                 title: '桥墩',
                                 items: [
                                     {
-                                        text: 'BCl',
+                                        text: '#1墩',
                                         value: '99',
                                     },
                                     {
-                                        text: 'BSl',
+                                        text: '#2墩',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: '#3墩',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: '#4墩',
                                         value: '99',
                                     },
                                 ],
@@ -128,44 +157,72 @@ const CenterTree = () => {
                                 title: '桥台',
                                 items: [
                                     {
-                                        text: 'BCl',
+                                        text: '#1台',
                                         value: '99',
                                     },
                                     {
-                                        text: 'BSl',
+                                        text: '#2台',
+                                        value: '99',
+                                    }, {
+                                        text: '#3台',
                                         value: '99',
                                     },
+                                    {
+                                        text: '#4台',
+                                        value: '99',
+                                    }, {
+                                        text: '#5台',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: '#6台',
+                                        value: '99',
+                                    }, {
+                                        text: '#7台',
+                                        value: '99',
+                                    },
+                                    {
+                                        text: '#8台',
+                                        value: '99',
+                                    },
+
                                 ],
                             },
                         },
                     ]
-                },
+                }
             ],
         };
     const stroke = '#EA2F97';
-    const config:any = {
+    const config: any = {
         data,
         style: {
             backgroundColor: '',
         },
-        markerCfg: (cfg: any) => {
-            return {
-                position: 'right',
-                show: cfg.children?.length,
-                style: (arg: any) => {
-                    return {
-                        stroke: arg.value.percent > 0.3 ? stroke : '#1f8fff',
-                    };
-                },
-            };
-        },
+        // markerCfg: (cfg: any) => {
+        //     return {
+        //         position: 'right',
+        //         show: cfg.children?.length,
+        //         style: (arg: any) => {
+        //             return {
+        //                 stroke: arg.value.percent > 0.3 ? stroke : '#1f8fff',
+        //             };
+        //         },
+        //     };
+        // },
         layout: {
-            getWidth: () => {
-                return 120
-            }
+            direction: 'TB',
+            // getVGap: () => {
+            //     // 每个节点的垂直间隙，会结合 getHeight 返回值使用
+            //     return 16;
+            // },
+            // getHGap: () => {
+            //     // 每个节点的水平间隙，会结合 getWidth 返回值使用
+            //     return 100;
+            // },
         },
         nodeCfg: {
-            size: [100, 20],
+            padding: 10,
             percent: {
                 position: 'bottom',
                 size: 4,
@@ -186,12 +243,12 @@ const CenterTree = () => {
                     switch (type) {
                         case 'value':
                             return {
-                                fill: '#dd1',
+                                fill: '#11a0dd',
                                 x: 75,
                             }
                         case 'text':
                             return {
-                                fill: '#aaa',
+                                fill: '#2f2f82',
                                 x: 10
                             }
 
@@ -220,7 +277,11 @@ const CenterTree = () => {
                 };
             },
         },
+        toolbarCfg:{
+            show: true,
+        },
         edgeCfg: {
+            type: 'quadratic',
             style: {
                 stroke: '#b9bbc0',
             },
@@ -239,8 +300,7 @@ const CenterTree = () => {
         // level: 2,
         behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
         onReady: (graph: any) => {
-            graph.zoom(1, {x: graph.get('width') / 2, y: graph.get('height') / 2});
-            //设置中心节点
+            graph.zoom(1.2, {x: graph.get('width') / 2, y: 30});
         }
     };
     return (
