@@ -11,7 +11,7 @@ const Weight = () => {
         renderer: 'svg',
         angleField: 'value',
         colorField: 'type',
-        color: ['#95e1d3', '#eaffd0', '#fce38a'],
+        color: ['#8fe9cf', '#caf0bf', '#e9f6a4'],
         radius: 0.8,
         appendPadding:[15, 0, 0, 0],
         label: {
@@ -21,7 +21,7 @@ const Weight = () => {
             style: {
                 fontSize: 14,
                 textAlign: 'center',
-                fill: "#1ccfe3"
+                fill: "#000000"
             },
         },
         interactions: [

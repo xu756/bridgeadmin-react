@@ -300,7 +300,7 @@ const CenterTree = () => {
         // level: 2,
         behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
         onReady: (graph: any) => {
-            graph.zoom(1.2, {x: graph.get('width') / 2, y: 30});
+            graph.zoom(1, {x: graph.get('width') / 2, y: 30});
         }
     };
     return (

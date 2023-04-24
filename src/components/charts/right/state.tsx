@@ -21,6 +21,18 @@ const BridgeState = () => {
         time: '2019-11',
         value: 17,
         about: '修复桥面'
+    },{
+        time: '2020-01',
+        value: -20,
+        about: '路面受损'
+    },{
+        time: '2020-05',
+        value: -10,
+        about: '桥墩老化'
+    },{
+        time: '2020-07',
+        value: 40,
+        about: '修复'
     }]
     const [config, setConfig] = React.useState<any>({
         data: data,
@@ -59,7 +71,6 @@ const BridgeState = () => {
             if (time === '建成' || time === '当前') {
                 return '#06e1e1';
             }
-
             return value > 0 ? '#30bf78' : '#f4664a';
         },
         legend: {
