@@ -1,58 +1,107 @@
-// src/pages/left/index.tsx
+import {GithubFilled, InfoCircleFilled, QuestionCircleFilled} from '@ant-design/icons';
+import type {ProSettings} from '@ant-design/pro-components';
+import {PageContainer, ProLayout, ProCard} from '@ant-design/pro-components';
+import {Avatar, Image, Space} from 'antd';
+import React, {useState} from 'react';
+import routes, {HomeRoutes, route} from '../../routes/routes';
+import {BrowserRouter, BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
-import React, {useEffect} from "react";
-import {Col, Row} from "antd";
-import ws from "../../utils/ws";
-import BCL from "../../components/charts/left/bcl";
-import Weight from "../../components/charts/left/weight";
-import Equipment from "../../components/charts/right/equipment";
-import CenterTree from "../../components/charts/center/tree";
-import GroupCharts from "../../components/charts/center/groupCharts";
-import DataList from "../../components/charts/right/list";
-import LeftInfo from "../../components/charts/left/info";
-// @ts-ignore
-import {Decoration3, Decoration1} from "@jiaminghi/data-view-react";
-import BridgeState from "../../components/charts/right/state";
-
-const Home = () => {
-    const [time, setTime] = React.useState(new Date().toLocaleString());
-    useEffect(() => {
-        ws.connect()
-        const timer = setInterval(() => {
-            setTime(new Date().toLocaleString())
-        }, 1000);
-        return () => {
-            clearInterval(timer);
-        }
-    }, []);
+export default () => {
+    const [pathname, setPathname] = useState('/home');
     return (
-        <div id="mainBox">
-            <div className="Header">
-                <div className={"t"}>城市桥梁安全技术评估系统可视化终端</div>
-                <div className={"time"}>{time}</div>
-            </div>
-            <Row className="Container">
-                <Col className="card l" span={5}>
-                    <div id="l1"><LeftInfo/></div>
-                    <div id="l2"><BCL/></div>
-                    <div id="l3"><Weight/></div>
 
-                </Col>
-                <Col className="card c" span={14}>
-                    <div id="c0"><Decoration1 style={{width: '250px', height: '30px'}}/></div>
-                    <div id="c1"><CenterTree/></div>
-                    <div id="c2"><GroupCharts/></div>
+        <ProLayout
+            bgLayoutImgList={[
+                {
+                    src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
+                    left: 85,
+                    bottom: 100,
+                    height: '303px',
+                },
+                {
+                    src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
+                    bottom: -68,
+                    right: -45,
+                    height: '303px',
+                },
+                {
+                    src: 'https://img.alicdn.com/imgextra/i3/O1CN018NxReL1shX85Yz6Cx_!!6000000005798-2-tps-884-496.png',
+                    bottom: 0,
+                    left: 0,
+                    width: '331px',
+                },
+            ]}
+            route={route}
+            location={{
+                pathname,
+            }}
+            collapsed={false}
+            menu={{
+                type: 'group',
+            }}
+            actionsRender={(props) => {
+                if (props.isMobile) return [];
+                return [
+                    <div
+                        key={1}
+                        style={{
+                            height: '200px',
+                        }}
+                    >
+                        <Image
+                            width={'100%'}
+                            preview={false}
+                            height={132}
+                            src="https://gw.alipayobjects.com/zos/bmw-prod/d283f09a-64d6-4d59-bfc7-37b49ea0da2b.svg"
+                        />
+                        <Space
+                            align="center"
+                            size="middle"
+                            style={{
+                                width: '100%',
+                                marginBlockStart: '32px',
+                            }}
+                        >
+                            <Avatar
+                                src="https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg"
+                                size="small"
+                            />
+                            <div
+                                style={{
+                                    fontSize: '14px',
+                                    marginInlineEnd: '32px',
+                                }}
+                            >
+                                七妮妮
+                            </div>
+                            <InfoCircleFilled key="InfoCircleFilled"/>
+                            <QuestionCircleFilled key="QuestionCircleFilled"/>
+                            <GithubFilled key="GithubFilled"/>
+                        </Space>
+                    </div>,
+                ];
+            }}
+            menuRender={(props, defaultDom) => (
+                <>
+                    {defaultDom}
+                </>
+            )}
+            menuItemRender={(item, dom) => (
+                <div
+                    onClick={() => {
+                        setPathname(item.path || '/home');
 
-                </Col>
-                <Col className="card r" span={5}>
-                    <div id="r0"><Decoration3 style={{width: '250px', height: '30px'}}/></div>
-                    <div id="r1"><DataList/></div>
-                    <div id="r2"><BridgeState/></div>
-                    <div id="r3"><Equipment/></div>
-                </Col>
-            </Row>
-        </div>
+                    }}
+                >
+                    {dom}
+                </div>
+            )}
+        >
+            <PageContainer>
+                <HomeRoutes path={pathname}/>
+            </PageContainer>
+        </ProLayout>
+
+
     );
 };
-
-export default Home;
