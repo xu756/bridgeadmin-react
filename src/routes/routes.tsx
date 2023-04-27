@@ -1,7 +1,7 @@
 import React, {lazy, Suspense} from "react";
-import {Navigate, Route, RouteObject, Routes, useRoutes} from "react-router-dom";
+import {Navigate, Route, useLocation, Routes} from "react-router-dom";
 import {CrownFilled, SmileFilled, TabletFilled} from "@ant-design/icons";
-import react from "@vitejs/plugin-react";
+import Index from "../pages";
 import Home from "../pages/home/home";
 
 export const route = {
@@ -11,7 +11,6 @@ export const route = {
             path: '/home',
             name: '首页',
             icon: <SmileFilled/>,
-            component: <h1>home</h1>,
         },
         {
             path: '/admin',
@@ -51,81 +50,43 @@ export const route = {
     ],
 }
 
-interface routerItem {
+
+export const homeRouter: routerItem[] = [
+    {
+        path: "/home",
+        auth: true,
+        element: <Home/>,
+    }, {
+        path: "/admin",
+        auth: true,
+        element: <Navigate to="/admin/page1"/>,
+    }, {
+        path: "/admin/page1",
+        auth: true,
+        element: <h1>管理1</h1>,
+    }
+]
+
+export interface routerItem {
     path: string,
     auth: boolean,
     element: React.ReactNode,
     children?: routerItem[]
 }
 
-const indexRoutes: routerItem[] = [
-    {
-        path: "/*",
-        auth: true,
-        element: <Home/>,
-    }, {
-        path: "/login",
-        auth: false,
-        element: <h1>登录</h1>,
-    }
-]
-
-const mapRoutesToElements = (routes: routerItem[]) => {
-    return routes.map((route: routerItem) => {
-        if (route.children) {
-            const childrenElements = mapRoutesToElements(route.children);
-            return (
-                <Route
-                    key={route.path}
-                    path={route.path}
-                    element={<>{childrenElements}</>}
-                />
-            );
-        }
-        return (
-            <Route
-                key={route.path}
-                path={route.path}
-                element={
-                    <Suspense fallback={<div>Loading...</div>}>
-                        {route.element}
-                    </Suspense>
-                }
-            />
-        );
-    });
-};
-
-const IndexRouter = () => (
-    <Routes>{mapRoutesToElements(indexRoutes)}</Routes>
-);
-
-export default IndexRouter;
-
-const home: routerItem[] = [
+export const indexRoutes: routerItem[] = [
     {
         path: "/",
         auth: true,
         element: <Navigate to="/home"/>,
     },
     {
-        path: "/home",
+        path: "/*",
         auth: true,
-        element: <div>home</div>,
+        element: <Index/>,
     }, {
-        path: "/admin",
-        auth: true,
-        element: <Navigate to="/admin/page1"/>,
-        children: [
-            {
-                path: "/admin/page1",
-                auth: true,
-                element: <h1>管理1</h1>,
-            }
-        ]
-    },
+        path: "/login",
+        auth: false,
+        element: <h1>登录</h1>,
+    }
 ]
-
-export const HomeRoutes = ({path}: { path: string }) => (
-    <Routes >{mapRoutesToElements(home)}</Routes>
-)
