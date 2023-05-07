@@ -1,18 +1,75 @@
-import {GithubFilled, InfoCircleFilled, QuestionCircleFilled} from '@ant-design/icons';
-import {PageContainer, ProLayout, ProCard} from '@ant-design/pro-components';
-import {Avatar, Image, Space} from 'antd';
+import {
+    GithubFilled,
+    InfoCircleFilled,
+    LogoutOutlined,
+    SearchOutlined,
+    QuestionCircleFilled
+} from '@ant-design/icons';
+import {
+    PageContainer,
+    ProLayout,
+    ProCard,
+    ProSettings
+} from '@ant-design/pro-components';
+import {Button, Dropdown, Input} from 'antd';
 import React, {Suspense, useEffect, useState} from 'react';
 import {homeRouter, route} from '../routes/routes';
 import {Route, Routes} from "react-router-dom";
 
+const SearchInput = () => {
+    return (
+        <div
+            key="SearchOutlined"
+            aria-hidden
+            style={{
+                display: 'flex',
+                alignItems: 'center',
+                marginInlineEnd: 24,
+            }}
+            onMouseDown={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+            }}
+        >
+            <Input
+                style={{
+                    borderRadius: 4,
+                    marginInlineEnd: 12,
+                    backgroundColor: "rgba(0, 0, 0, 0.06)",
+                }}
+                prefix={
+                    <SearchOutlined
+                        style={{
+                            color:"rgba(0, 0, 0, 0.25)",
+                        }}
+                    />
+                }
+                placeholder="搜索"
+                bordered={false}
+            />
+            <Button
+            >搜索</Button>
+        </div>
+    );
+};
+
 export default () => {
     const [pathname, setPathname] = useState('/home');
+    const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
+        layout: 'mix',
+        iconfontUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
+    });
+    const [loading, setLoading] = useState(true);
+    const [collapsed, setCollapsed] = useState(false);
     useEffect(() => {
         setPathname(window.location.pathname)
+        setLoading(false)
     })
     return (
-
         <ProLayout
+            loading={loading}
+            title={''}
+            logo={<img src="./logo.svg" style={{width: '100px'}} />}
             bgLayoutImgList={[
                 {
                     src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
@@ -37,50 +94,44 @@ export default () => {
             location={{
                 pathname,
             }}
-            collapsed={false}
+            {...settings}
+            collapsed={collapsed}
+            onCollapse={setCollapsed}
             menu={{
                 type: 'group',
+                collapsedShowGroupTitle: true,
+            }}
+            avatarProps={{
+                src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
+                size: 'small',
+                title: '七妮妮',
+                render: (props, dom) => {
+                    return (
+                        <Dropdown
+                            menu={{
+                                items: [
+                                    {
+                                        key: 'logout',
+                                        icon: <LogoutOutlined/>,
+                                        label: '退出登录',
+                                    },
+                                ],
+                            }}
+                        >
+                            {dom}
+                        </Dropdown>
+                    );
+                },
             }}
             actionsRender={(props) => {
                 if (props.isMobile) return [];
                 return [
-                    <div
-                        key={1}
-                        style={{
-                            height: '200px',
-                        }}
-                    >
-                        <Image
-                            width={'100%'}
-                            preview={false}
-                            height={132}
-                            src="https://gw.alipayobjects.com/zos/bmw-prod/d283f09a-64d6-4d59-bfc7-37b49ea0da2b.svg"
-                        />
-                        <Space
-                            align="center"
-                            size="middle"
-                            style={{
-                                width: '100%',
-                                marginBlockStart: '32px',
-                            }}
-                        >
-                            <Avatar
-                                src="https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg"
-                                size="small"
-                            />
-                            <div
-                                style={{
-                                    fontSize: '14px',
-                                    marginInlineEnd: '32px',
-                                }}
-                            >
-                                七妮妮
-                            </div>
-                            <InfoCircleFilled key="InfoCircleFilled"/>
-                            <QuestionCircleFilled key="QuestionCircleFilled"/>
-                            <GithubFilled key="GithubFilled"/>
-                        </Space>
-                    </div>,
+                    props.layout !== 'side' && document.body.clientWidth > 1400 ? (
+                        <SearchInput/>
+                    ) : undefined,
+                    <InfoCircleFilled key="InfoCircleFilled"/>,
+                    <QuestionCircleFilled key="QuestionCircleFilled"/>,
+                    <GithubFilled key="GithubFilled"/>,
                 ];
             }}
             menuRender={(props, defaultDom) => (
@@ -99,26 +150,34 @@ export default () => {
                 </div>
             )}
         >
-            <PageContainer>
-                <Routes location={pathname}>
-                    {homeRouter.map((route, index) => {
-                        return (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                element={
-                                    <Suspense fallback={<div>Loading...</div>}>
-                                        {route.element}
-                                    </Suspense>
-                                }
-                            />
-                        )
-                    })
-                    }
-                </Routes>
+            <PageContainer
+                // footer={[
+                //     <Button key="3">重置</Button>,
+                //     <Button key="2" type="primary">
+                //         提交
+                //     </Button>,
+                // ]}
+            >
+                <ProCard>
+                    <Routes location={pathname}>
+                        {homeRouter.map((route, index) => {
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={
+                                        <Suspense fallback={<div>Loading...</div>}>
+                                            {route.element}
+                                        </Suspense>
+                                    }
+                                />
+                            )
+                        })
+                        }
+                    </Routes>
+                </ProCard>
             </PageContainer>
         </ProLayout>
-
 
     );
 };

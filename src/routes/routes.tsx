@@ -3,6 +3,7 @@ import {Navigate, Route, useLocation, Routes} from "react-router-dom";
 import {CrownFilled, SmileFilled, TabletFilled} from "@ant-design/icons";
 import Index from "../pages";
 import Home from "../pages/home/home";
+import Charts from "../components/charts";
 
 export const route = {
     path: '/',
@@ -12,6 +13,7 @@ export const route = {
             name: '首页',
             icon: <SmileFilled/>,
         },
+
         {
             path: '/admin',
             name: '管理页',
@@ -56,7 +58,7 @@ export const homeRouter: routerItem[] = [
         path: "/home",
         auth: true,
         element: <Home/>,
-    }, {
+    },{
         path: "/admin",
         auth: true,
         element: <Navigate to="/admin/page1"/>,
@@ -84,7 +86,12 @@ export const indexRoutes: routerItem[] = [
         path: "/*",
         auth: true,
         element: <Index/>,
-    }, {
+    },
+    {
+        path: "/charts",
+        auth: true,
+        element: <Charts/>,
+    },{
         path: "/login",
         auth: false,
         element: <h1>登录</h1>,
