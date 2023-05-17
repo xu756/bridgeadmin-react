@@ -5,7 +5,7 @@ const LeftInfo = () => {
     const [data, setData] = React.useState<any>({
         name: '桥梁1',
         count: 9,
-        remark: '备注备注备注备注备注备注备注备注备注',
+        remark: '本座桥梁监测设备于2017年1月1日安装，各类传感器共76个，行业图形采集器4个。',
 
     });
     const valueStyle = {
@@ -27,7 +27,7 @@ const LeftInfo = () => {
                 <Col span={12}>
                     <Statistic valueStyle={valueStyle} title="已评估次数：" value={data.count}/>
                 </Col>
-                <Col span={16}>
+                <Col span={22}>
                     <Statistic valueStyle={valueStyle} title="备注：" value={data.remark}/>
                 </Col>
             </Row>

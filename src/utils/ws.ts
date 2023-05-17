@@ -64,5 +64,5 @@ class WebSocketService {
     }
 }
 
-const ws = new WebSocketService("ws://admin.imlogic.cn/api/websocket");
+const ws = new WebSocketService("wss://dev.imlogic.cn/bridgeadmin/api/websocket");
 export default ws;

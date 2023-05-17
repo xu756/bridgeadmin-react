@@ -23,15 +23,15 @@ const BridgeState = () => {
         about: '修复桥面'
     },{
         time: '2020-01',
-        value: -20,
+        value: -16,
         about: '路面受损'
     },{
         time: '2020-05',
-        value: -10,
+        value: -18,
         about: '桥墩老化'
     },{
         time: '2020-07',
-        value: 40,
+        value: 26,
         about: '修复'
     }]
     const [config, setConfig] = React.useState<any>({

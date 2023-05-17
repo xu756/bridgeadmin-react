@@ -13,7 +13,7 @@ import {
 } from '@ant-design/pro-components';
 import {Button, Dropdown, Input} from 'antd';
 import React, {Suspense, useEffect, useState} from 'react';
-import {homeRouter, route} from '../routes/routes';
+import {homeRouter, route,appList} from '../routes/routes';
 import {Route, Routes} from "react-router-dom";
 
 const SearchInput = () => {
@@ -56,7 +56,9 @@ const SearchInput = () => {
 export default () => {
     const [pathname, setPathname] = useState('/home');
     const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
+        // fixSiderbar: true,
         layout: 'mix',
+        splitMenus: true,
         iconfontUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
     });
     const [loading, setLoading] = useState(true);
@@ -69,7 +71,7 @@ export default () => {
         <ProLayout
             loading={loading}
             title={''}
-            logo={<img src="./logo.svg" style={{width: '100px'}} />}
+            logo={<img src="/logo.svg" style={{width: '120px',height:'60px'}} />}
             bgLayoutImgList={[
                 {
                     src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
@@ -91,6 +93,7 @@ export default () => {
                 },
             ]}
             route={route}
+            appList={appList}
             location={{
                 pathname,
             }}
@@ -104,7 +107,7 @@ export default () => {
             avatarProps={{
                 src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
                 size: 'small',
-                title: '七妮妮',
+                title: '徐甲新',
                 render: (props, dom) => {
                     return (
                         <Dropdown

@@ -67,7 +67,7 @@ const DataList = () => {
                         <Row>
                             <Col span={6}>名称</Col>
                             <Col span={4}>区域</Col>
-                            <Col span={4}>次数</Col>
+                            <Col span={4}>已评估</Col>
                             <Col span={3}>BCl</Col>
                             <Col span={3}>BSl</Col>
                             <Col span={4}>操作</Col>

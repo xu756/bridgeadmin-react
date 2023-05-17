@@ -5,6 +5,22 @@ import Index from "../pages";
 import Home from "../pages/home/home";
 import Charts from "../components/charts";
 
+
+
+
+export const appList = [
+    {
+        icon: '/b.svg',
+        title: '云工桥安',
+        desc: '城市桥梁安全技术评估系统',
+        url: 'http://b.imlogic.cn/',
+    },{
+        icon: '/admin.svg',
+        title: '可视大屏',
+        desc: '桥梁安全状况实时监测大屏',
+        url: '/charts',
+    }
+]
 export const route = {
     path: '/',
     routes: [
