@@ -7,7 +7,6 @@ import Charts from "../components/charts";
 
 
 
-
 export const appList = [
     {
         icon: '/b.svg',
