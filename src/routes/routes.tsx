@@ -4,6 +4,7 @@ import {CrownFilled, SmileFilled, TabletFilled} from "@ant-design/icons";
 import Index from "../pages";
 import Home from "../pages/home/home";
 import Charts from "../components/charts";
+import Editor from "../components/editor/editor";
 
 
 
@@ -80,7 +81,7 @@ export const homeRouter: routerItem[] = [
     }, {
         path: "/admin/page1",
         auth: true,
-        element: <h1>管理1</h1>,
+        element:<Editor/>,
     }
 ]
 
