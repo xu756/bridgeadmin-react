@@ -6,7 +6,7 @@ import Home from "../pages/home/home";
 import Charts from "../components/charts";
 import Admin from "../assets/images/admin.svg"
 import BSvg from "../assets/images/b.svg"
-
+import Login from "../pages/login/login";
 export const appList = [
     {
         icon: BSvg,
@@ -104,7 +104,7 @@ export const indexRoutes: routerItem[] = [
     {
         path: "/login",
         auth: false,
-        element: <h1>登录</h1>,
+        element:<Login/>,
     },
     {
         path: "/charts",
