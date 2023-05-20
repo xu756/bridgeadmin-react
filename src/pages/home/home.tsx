@@ -1,6 +1,6 @@
 import { StatisticCard } from '@ant-design/pro-components';
 import RcResizeObserver from 'rc-resize-observer';
-import { useState } from 'react';
+import {useState} from "react";
 
 const imgStyle = {
     display: 'block',
@@ -10,7 +10,6 @@ const imgStyle = {
 
 export default () => {
     const [responsive, setResponsive] = useState(false);
-
     return (
         <RcResizeObserver
             key="resize-observer"

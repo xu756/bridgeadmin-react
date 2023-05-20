@@ -87,7 +87,7 @@ export interface routerItem {
     path: string,
     auth: boolean,
     element: React.ReactNode,
-    children?: routerItem[]
+    children?: routerItem[],
 }
 
 export const indexRoutes: routerItem[] = [

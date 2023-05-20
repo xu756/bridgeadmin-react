@@ -17,6 +17,7 @@ import {homeRouter, route, appList} from '../routes/routes';
 import {Route, Routes} from "react-router-dom";
 import LogoSvg from "../assets/images/logo.svg";
 import IconFont, {IconUrl} from "../components/iconfont/icon";
+import AuthRoute from "../routes/AuthRouter";
 
 const SearchInput = () => {
     return (
@@ -171,9 +172,11 @@ export default () => {
                                     key={index}
                                     path={route.path}
                                     element={
-                                        <Suspense fallback={<div>Loading...</div>}>
-                                            {route.element}
-                                        </Suspense>
+                                        <AuthRoute key={index} path={route.path}>
+                                            <Suspense fallback={<div>Loading...</div>}>
+                                                {route.element}
+                                            </Suspense>
+                                        </AuthRoute>
                                     }
                                 />
                             )
