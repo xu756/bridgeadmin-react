@@ -16,6 +16,7 @@ import React, {Suspense, useEffect, useState} from 'react';
 import {homeRouter, route, appList} from '../routes/routes';
 import {Route, Routes} from "react-router-dom";
 import LogoSvg from "../assets/images/logo.svg";
+import IconFont, {IconUrl} from "../components/iconfont/icon";
 
 const SearchInput = () => {
     return (
@@ -60,7 +61,7 @@ export default () => {
         // fixSiderbar: true,
         layout: 'mix',
         splitMenus: true,
-        iconfontUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
+        iconfontUrl: IconUrl,
     });
     const [loading, setLoading] = useState(true);
     const [collapsed, setCollapsed] = useState(false);
@@ -72,9 +73,6 @@ export default () => {
         <ProLayout
             loading={loading}
             title={''}
-            logoStyle={{
-                height: '48px',
-            }}
             logo={LogoSvg}
             bgLayoutImgList={[
                 {

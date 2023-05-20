@@ -1,6 +1,6 @@
 import React, {lazy, Suspense} from "react";
-import {Navigate, Route, useLocation, Routes} from "react-router-dom";
-import {CrownFilled, SmileFilled, TabletFilled} from "@ant-design/icons";
+import {Navigate} from "react-router-dom";
+import {CrownFilled, AppstoreAddOutlined, SmileFilled, TabletFilled} from "@ant-design/icons";
 import Index from "../pages";
 import Home from "../pages/home/home";
 import Charts from "../components/charts";
@@ -31,7 +31,7 @@ export const route = {
         {
             path: '/admin',
             name: '管理页',
-            icon: <CrownFilled/>,
+            icon: <AppstoreAddOutlined/>,
             routes: [
                 {
                     path: '/admin/page1',
