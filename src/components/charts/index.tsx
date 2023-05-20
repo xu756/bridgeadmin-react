@@ -13,7 +13,7 @@ import LeftInfo from "./left/info";
 // @ts-ignore
 import {Decoration3, Decoration1} from "@jiaminghi/data-view-react";
 import BridgeState from "./right/state";
-
+import "./charts.scss"
 const Charts = () => {
     const [time, setTime] = React.useState(new Date().toLocaleString());
     useEffect(() => {
@@ -26,12 +26,12 @@ const Charts = () => {
         }
     }, []);
     return (
-        <div id="mainBox">
-            <div className="Header">
+        <div id="ChartsMainBox">
+            <div className="ChartsHeader">
                 <div className={"t"}>城市桥梁安全技术评估系统可视化终端</div>
                 <div className={"time"}>{time}</div>
             </div>
-            <Row className="Container">
+            <Row className="ChartsContainer">
                 <Col className="card l" span={5}>
                     <div id="l1"><LeftInfo/></div>
                     <div id="l2"><BCL/></div>

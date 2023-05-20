@@ -4,18 +4,17 @@ import {CrownFilled, SmileFilled, TabletFilled} from "@ant-design/icons";
 import Index from "../pages";
 import Home from "../pages/home/home";
 import Charts from "../components/charts";
-import Editor from "../components/editor/editor";
-
-
+import Admin from "../assets/images/admin.svg"
+import BSvg from "../assets/images/b.svg"
 
 export const appList = [
     {
-        icon: '/b.svg',
+        icon: BSvg,
         title: '云工桥安',
         desc: '城市桥梁安全技术评估系统',
         url: 'http://b.imlogic.cn/',
-    },{
-        icon: '/admin.svg',
+    }, {
+        icon: Admin,
         title: '可视大屏',
         desc: '桥梁安全状况实时监测大屏',
         url: '/charts',
@@ -29,7 +28,6 @@ export const route = {
             name: '首页',
             icon: <SmileFilled/>,
         },
-
         {
             path: '/admin',
             name: '管理页',
@@ -74,14 +72,14 @@ export const homeRouter: routerItem[] = [
         path: "/home",
         auth: true,
         element: <Home/>,
-    },{
+    }, {
         path: "/admin",
         auth: true,
         element: <Navigate to="/admin/page1"/>,
     }, {
         path: "/admin/page1",
         auth: true,
-        element:<Editor/>,
+        element: <h1>管理页面</h1>,
     }
 ]
 
@@ -104,12 +102,13 @@ export const indexRoutes: routerItem[] = [
         element: <Index/>,
     },
     {
-        path: "/charts",
-        auth: true,
-        element: <Charts/>,
-    },{
         path: "/login",
         auth: false,
         element: <h1>登录</h1>,
-    }
+    },
+    {
+        path: "/charts",
+        auth: true,
+        element: <Charts/>,
+    },
 ]

@@ -13,8 +13,9 @@ import {
 } from '@ant-design/pro-components';
 import {Button, Dropdown, Input} from 'antd';
 import React, {Suspense, useEffect, useState} from 'react';
-import {homeRouter, route,appList} from '../routes/routes';
+import {homeRouter, route, appList} from '../routes/routes';
 import {Route, Routes} from "react-router-dom";
+import LogoSvg from "../assets/images/logo.svg";
 
 const SearchInput = () => {
     return (
@@ -40,7 +41,7 @@ const SearchInput = () => {
                 prefix={
                     <SearchOutlined
                         style={{
-                            color:"rgba(0, 0, 0, 0.25)",
+                            color: "rgba(0, 0, 0, 0.25)",
                         }}
                     />
                 }
@@ -71,7 +72,10 @@ export default () => {
         <ProLayout
             loading={loading}
             title={''}
-            logo={<img src="/logo.svg" style={{width: '120px',height:'60px'}} />}
+            logoStyle={{
+                height: '48px',
+            }}
+            logo={LogoSvg}
             bgLayoutImgList={[
                 {
                     src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
