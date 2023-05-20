@@ -62,7 +62,6 @@ export default () => {
         layout: 'mix',
         splitMenus: true,
         iconfontUrl: IconUrl,
-
     });
     const [loading, setLoading] = useState(true);
     const [collapsed, setCollapsed] = useState(false);
