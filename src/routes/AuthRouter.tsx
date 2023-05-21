@@ -6,7 +6,9 @@ export default ({children, path}: any) => {
     const token = localStorage.getItem("token") || "";
 
     useEffect(() => {
-        console.log(path)
+    if (!token && path !== "/login") {
+            navigate("/login")
+        }
     }, [token, location.pathname])
     return children
 }

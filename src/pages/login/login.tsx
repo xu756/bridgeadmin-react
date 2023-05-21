@@ -1,7 +1,7 @@
 
-
+import "./login.scss";
 export default () => {
     return (
-        <div>login</div>
+        <div id="login_body">login</div>
     )
 }

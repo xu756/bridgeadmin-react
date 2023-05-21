@@ -156,14 +156,7 @@ export default () => {
                 </div>
             )}
         >
-            <PageContainer
-                // footer={[
-                //     <Button key="3">重置</Button>,
-                //     <Button key="2" type="primary">
-                //         提交
-                //     </Button>,
-                // ]}
-            >
+            <PageContainer>
                 <ProCard>
                     <Routes location={pathname}>
                         {homeRouter.map((route, index) => {
