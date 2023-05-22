@@ -1,6 +1,6 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import store from '@/store';
-import { openLoad, closeLoad } from '@/store/config';
+import {openLoad, closeLoad} from '@/store/config';
 
 const BASE_URL = '/appserver';
 
@@ -78,7 +78,7 @@ export function get<T>(url: string, params = {}): Promise<T> {
             .get(url, {
                 params,
             })
-            .then((response: AxiosResponse) => {
+            .then((response: AxiosResponse<T>) => {
                 resolve(response.data);
             })
             .catch((error) => {
@@ -92,8 +92,8 @@ export function post<T>(url: string, data = {}): Promise<T> {
     return new Promise((resolve, reject) => {
         client
             .post(url, data)
-            .then((response: AxiosResponse<ResponseData<T>>) => {
-                resolve(response.data.data);
+            .then((response: AxiosResponse<T>) => {
+                resolve(response.data);
             })
             .catch((error) => {
                 reject(error);

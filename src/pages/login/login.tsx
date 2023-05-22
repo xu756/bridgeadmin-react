@@ -1,5 +1,5 @@
 import "./login.scss";
-import {Button} from 'antd';
+import {Button, Col, Row} from 'antd';
 import {useDispatch} from 'react-redux';
 import {setUser} from "@/store/user";
 import {useSelector} from 'react-redux';
@@ -11,7 +11,7 @@ export default () => {
     const api = new NoAuthApi();
     const user = useSelector((state: RootState) => state.User);
     useEffect(() => {
-        init();
+        // init();
     }, []);
     const init = () => {
         api.getCaptcha().then(r => {
@@ -22,8 +22,13 @@ export default () => {
     }
     const dispatch = useDispatch();
     return (
-        <div id="login_body">
-
+        <div className="login">
+            <div className="login_box">
+                <Row className="w100" >
+                    <Col className="login_box_left" span={12}></Col>
+                    <Col className="login_box_right" span={12}></Col>
+                </Row>
+            </div>
         </div>
     )
 }
