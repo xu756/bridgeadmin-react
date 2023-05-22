@@ -3,15 +3,15 @@
   margin: 0;
 }
 
-html, body, #root {
+html, body, #root, .ant-spin-nested-loading, .ant-spin-container {
   height: 100%;
   width: 100%;
-  user-select: none;
 
 }
+
 //logo
-.ant-pro-top-nav-header-logo >*:first-child>img{
+.ant-pro-top-nav-header-logo > *:first-child > img {
   height: 46px;
 }
 
-// login
+//loading}

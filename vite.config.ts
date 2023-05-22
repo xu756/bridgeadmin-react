@@ -19,5 +19,14 @@ export default defineConfig({
             '@': '/src'
         }
     },
+    server:{
+        proxy: {
+            '/appserver': {
+                target: 'https://xu756.top/',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/appserver/, '') // 不可以省略rewrite
+            }
+        }
+    }
 
 })
