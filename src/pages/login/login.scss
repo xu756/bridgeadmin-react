@@ -7,7 +7,7 @@
   background: url("@/assets/images/login_bg.png") no-repeat center center fixed;
   background-size: cover;
 
-  &_box {
+  &-box {
     padding: 15px;
     position: absolute;
     top: 45%;
@@ -15,14 +15,24 @@
     transform: translate(-50%, -50%);
     background: #ffffff;
     box-shadow: 0 0 5px #999999;
-    &_left{
-      //width: 20vw;
-      height: 100px;
+    &-left{
+      width: 20vw;
+
     }
-    &_right{
-      //width: 20vw;
-      height: 100px;
+    &-right{
+      width: 20vw;
     }
   }
+  &-form-forgot{
+    text-align: right;
+  }
+  &-form—submit{
+    margin-top: 30px;
+  }
+  &-form—submit-button{
+    width: 100%;
+  }
+
+
 
 }
