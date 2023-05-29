@@ -19,7 +19,7 @@ import LogoSvg from "../assets/images/logo.svg";
 import IconFont, {IconUrl} from "../components/iconfont/icon";
 import AuthRoute from "../routes/AuthRouter";
 import {AdminApi} from "@/utils/api";
-import {RootState} from "@/store";
+import store, {RootState} from "@/store";
 import {setUser} from "@/store/user";
 import {useSelector} from "react-redux";
 
@@ -68,12 +68,21 @@ export default () => {
         splitMenus: true,
         iconfontUrl: IconUrl,
     });
+
     const [loading, setLoading] = useState(true);
     const [collapsed, setCollapsed] = useState(false);
+    useEffect(() => {
+        const api = new AdminApi();
+        api.getUserInfo().then(r => {
+            store.dispatch(setUser(r));
+        })
+    }, [])
     useEffect(() => {
         setPathname(window.location.pathname)
         setLoading(false)
     }, [pathname]);
+
+
     const user = useSelector((state: RootState) => state.User);
 
     return (
@@ -126,6 +135,9 @@ export default () => {
                                         key: 'logout',
                                         icon: <LogoutOutlined/>,
                                         label: '退出登录',
+                                        onClick: () => {
+                                            window.location.href = '/login';
+                                        },
                                     },
                                 ],
                             }}

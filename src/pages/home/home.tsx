@@ -13,12 +13,7 @@ const imgStyle = {
 
 export default () => {
     const [responsive, setResponsive] = useState(false);
-    const api = new AdminApi();
-    useEffect(() => {
-        api.getUserInfo().then(r => {
-            store.dispatch(setUser(r));
-        })
-    },[])
+
     return (
         <RcResizeObserver
             key="resize-observer"
