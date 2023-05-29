@@ -28,3 +28,18 @@ export class NoAuthApi {
     }
 
 }
+
+
+export class AdminApi {
+    url: string
+    data: any
+
+    constructor() {
+        this.url = ''
+        this.data = {}
+    }
+
+    public getUserInfo() {
+        return get<any>("/admin/api/get-admin-info")
+    }
+}

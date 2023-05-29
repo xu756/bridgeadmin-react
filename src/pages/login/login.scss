@@ -8,31 +8,51 @@
   background-size: cover;
 
   &-box {
-    padding: 15px;
+    width: 23vw;
+    padding: 20px;
     position: absolute;
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #ffffff;
     box-shadow: 0 0 5px #999999;
-    &-left{
-      width: 20vw;
+    display: flex;
+    flex-wrap: wrap; /* 避免元素溢出容器 */
+    justify-content: space-between; /* 左右对齐 */
+
+    &-left {
+      width: 40%; /* 调整为适当的宽度 */
 
     }
-    &-right{
-      width: 20vw;
+
+    &-right {
+      width: 60%; /* 调整为适当的宽度 */
+    }
+
+
+    @media (max-width: 874px) {
+      width: 50vw;
+      flex-direction: column;
+      &-left {
+        width: 100%; /* 调整为适当的宽度 */
+      }
+      &-right {
+        width: 100%; /* 调整为适当的宽度 */
+      }
     }
   }
-  &-form-forgot{
+
+  &-form-forgot {
     text-align: right;
   }
-  &-form—submit{
+
+  &-form—submit {
     margin-top: 30px;
   }
-  &-form—submit-button{
+
+  &-form—submit-button {
     width: 100%;
   }
-
 
 
 }

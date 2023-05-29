@@ -7,6 +7,7 @@ import {useEffect} from "react";
 import {NoAuthApi} from "@/utils/api";
 import IconFont from "@/components/iconfont/icon";
 import {ResponseData} from "@/model/response";
+import {UserLogin} from "@/model/user";
 
 export default () => {
     const api = new NoAuthApi();
@@ -24,8 +25,8 @@ export default () => {
         });
     }
     const Login = (values: any) => {
-        api.login(values.username, values.password).then((r: ResponseData) => {
-            console.log(r);
+        api.login(values.username, values.password).then((r:UserLogin) => {
+            localStorage.setItem("token", r.access_token);
         }).catch(e => {
             console.log(e);
         });
@@ -38,11 +39,10 @@ export default () => {
         <div className="login">
             {contextHolder}
             <div className="login-box">
-                <Row className="w100">
-                    <Col className="login-box-left" span={12}>
+                    <div className="login-box-left">
                         1
-                    </Col>
-                    <Col className="login-box-right" span={12}>
+                    </div>
+                    <div className="login-box-right">
                         <Form onFinish={Login}
                               onFinishFailed={LoginFailed}
                         >
@@ -61,10 +61,10 @@ export default () => {
                             </Form.Item>
                             <Form.Item name="remember" valuePropName="checked" noStyle>
                                 <Row justify={"space-between"}>
-                                    <Col span={8}>
+                                    <Col span={12}>
                                         <Checkbox>记住密码</Checkbox>
                                     </Col>
-                                    <Col span={8} className="login-form-forgot">
+                                    <Col span={12} className="login-form-forgot">
                                         <a href="">
                                             忘记密码
                                         </a>
@@ -77,8 +77,7 @@ export default () => {
                                 </Button>
                             </Form.Item>
                         </Form>
-                    </Col>
-                </Row>
+                </div>
             </div>
         </div>
     )

@@ -4,16 +4,16 @@ interface IUser {
     id?: number;
     name?: string;
     avatar?: string
-    mobile?: string
-    token?: string
+    role?: number;
+    openId?: string;
 }
 
 const initialState: IUser = {
     id: 0,
     name: '',
     avatar: '',
-    mobile: '',
-    token: '',
+    role: 0,
+    openId: '',
 };
 
 const userSlice = createSlice({
