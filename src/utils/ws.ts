@@ -1,6 +1,6 @@
 import {WsData} from "../model/ws";
 import Crypoto from "../utils/crypto";
-import {BclAndBsl, BridgeWeight, EqItem} from "../model/bridge";
+import {BclAndBsl, BridgeWeight, EqItem} from "../components/charts/bridge";
 
 class WebSocketService {
     private ws: WebSocket | null = null;

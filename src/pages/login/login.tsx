@@ -1,11 +1,12 @@
 import "./login.scss";
-import {Button, Checkbox, Col, Form, Input, Row,message} from 'antd';
+import {Button, Checkbox, Col, Form, Input, Row, message} from 'antd';
 import {setUser} from "@/store/user";
 import {useSelector} from 'react-redux';
 import store, {RootState} from '@/store';
 import {useEffect} from "react";
 import {NoAuthApi} from "@/utils/api";
 import IconFont from "@/components/iconfont/icon";
+import {ResponseData} from "@/model/response";
 
 export default () => {
     const api = new NoAuthApi();
@@ -23,7 +24,11 @@ export default () => {
         });
     }
     const Login = (values: any) => {
-        console.log('Success:', values);
+        api.login(values.username, values.password).then((r: ResponseData) => {
+            console.log(r);
+        }).catch(e => {
+            console.log(e);
+        });
     };
 
     const LoginFailed = (errorInfo: any) => {
@@ -51,7 +56,8 @@ export default () => {
                                 name={"password"}
                                 rules={[{required: true, message: '请输入密码'}]}
                             >
-                                <Input.Password prefix={<IconFont type={"yg-icon-tianchongxing-"}/>} placeholder="密码"/>
+                                <Input.Password prefix={<IconFont type={"yg-icon-tianchongxing-"}/>}
+                                                placeholder="密码"/>
                             </Form.Item>
                             <Form.Item name="remember" valuePropName="checked" noStyle>
                                 <Row justify={"space-between"}>

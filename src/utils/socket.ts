@@ -1,9 +1,9 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import store from '@/store';
 import {openLoad, closeLoad} from '@/store/config';
+import {message} from "antd";
 
 const BASE_URL = '/appserver';
-
 // 创建axios实例
 const createClient = () => {
     const instance = axios.create({
@@ -37,7 +37,6 @@ const createClient = () => {
         (response) => {
             // 设置加载
             store.dispatch(closeLoad());
-
             switch (response.status) {
                 case 200:
                     return response.data;
@@ -64,12 +63,6 @@ const createClient = () => {
 // 创建全局axios实例
 const client = createClient();
 
-// 返回数据类型
-interface ResponseData<T> {
-    code: number;
-    msg: string;
-    data: T;
-}
 
 // 封装get请求
 export function get<T>(url: string, params = {}): Promise<T> {
@@ -78,8 +71,12 @@ export function get<T>(url: string, params = {}): Promise<T> {
             .get(url, {
                 params,
             })
-            .then((response: AxiosResponse<T>) => {
-                resolve(response.data);
+            .then((response: any) => {
+                if (response.code === 200) {
+                    resolve(response.data);
+                } else {
+                    reject(response);
+                }
             })
             .catch((error) => {
                 reject(error);
@@ -92,8 +89,14 @@ export function post<T>(url: string, data = {}): Promise<T> {
     return new Promise((resolve, reject) => {
         client
             .post(url, data)
-            .then((response: AxiosResponse<T>) => {
-                resolve(response.data);
+            .then((response: any) => {
+                if (response.code === 200) {
+                    message.success(response.msg)
+                    resolve(response.data)
+                } else {
+                    message.error(response.msg)
+                    reject(response)
+                }
             })
             .catch((error) => {
                 reject(error);

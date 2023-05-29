@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Pie, Plot} from '@ant-design/plots';
-import {BridgeWeight} from "../../../model/bridge";
+import {BridgeWeight} from "../bridge";
 import ws from "../../../utils/ws";
 // @ts-ignore
 import { BorderBox1 } from '@jiaminghi/data-view-react'

@@ -3,14 +3,28 @@ import {get, post} from './socket'
 export class NoAuthApi {
     url: string
     data: any
+
     constructor() {
         this.url = ''
         this.data = {}
     }
-    public config(){
+
+    public config() {
         return post<any>("/login/config")
     }
-    public getCaptcha(){
+
+    public getCaptcha() {
         return get<any>("/login/captcha")
     }
+
+    public login(
+        username: string,
+        password: string,
+    ) {
+        return post<any>("/login/password", {
+            username,
+            password,
+        })
+    }
+
 }

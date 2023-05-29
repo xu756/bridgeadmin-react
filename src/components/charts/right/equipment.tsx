@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Line, Plot} from '@ant-design/plots';
-import {EqItem} from "../../../model/bridge";
+import {EqItem} from "../bridge";
 import ws from "../../../utils/ws";
 // @ts-ignore
 import {BorderBox1} from '@jiaminghi/data-view-react'

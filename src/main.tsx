@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {Provider, useSelector} from 'react-redux';
 import store, {RootState} from '@/store';
-import {Spin} from 'antd';
+import {message, Spin} from 'antd';
 import './assets/global.scss'
 import {indexRoutes} from './routes/routes';
 import AuthRoute from './routes/AuthRouter';

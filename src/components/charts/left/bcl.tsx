@@ -1,6 +1,6 @@
 import React, {memo, useEffect, useRef} from 'react';
 import {Bar, Plot} from '@ant-design/plots';
-import {BclAndBsl} from "../../../model/bridge";
+import {BclAndBsl} from "../bridge";
 import ws from "../../../utils/ws";
 // @ts-ignore
 import {BorderBox1} from '@jiaminghi/data-view-react'
