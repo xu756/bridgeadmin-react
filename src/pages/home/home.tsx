@@ -13,7 +13,6 @@ const imgStyle = {
 
 export default () => {
     const [responsive, setResponsive] = useState(false);
-
     return (
         <RcResizeObserver
             key="resize-observer"
