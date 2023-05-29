@@ -8,7 +8,7 @@ const BASE_URL = '/appserver';
 const createClient = () => {
     const instance = axios.create({
         baseURL: BASE_URL,
-        timeout: 15000,
+        timeout: 1500,
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
             Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -42,6 +42,7 @@ const createClient = () => {
                     return response.data;
                 case 401:
                     // 处理未授权的情况
+                    window.location.href = '/login';
                     break;
                 default:
                 // 处理其他错误
@@ -53,6 +54,7 @@ const createClient = () => {
             // const dispatch = useDispatch();
             // dispatch(closeLoad());
             // 处理网络错误
+            store.dispatch(closeLoad());
             return Promise.reject(error);
         }
     );

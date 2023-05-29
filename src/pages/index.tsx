@@ -18,6 +18,10 @@ import {Route, Routes} from "react-router-dom";
 import LogoSvg from "../assets/images/logo.svg";
 import IconFont, {IconUrl} from "../components/iconfont/icon";
 import AuthRoute from "../routes/AuthRouter";
+import {AdminApi} from "@/utils/api";
+import {RootState} from "@/store";
+import {setUser} from "@/store/user";
+import {useSelector} from "react-redux";
 
 const SearchInput = () => {
     return (
@@ -69,7 +73,9 @@ export default () => {
     useEffect(() => {
         setPathname(window.location.pathname)
         setLoading(false)
-    })
+    }, [pathname]);
+    const user = useSelector((state: RootState) => state.User);
+
     return (
         <ProLayout
             loading={loading}
@@ -108,9 +114,9 @@ export default () => {
                 collapsedShowGroupTitle: true,
             }}
             avatarProps={{
-                src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
+                src: user.avatar,
                 size: 'small',
-                title: '徐甲新',
+                title: user.name,
                 render: (props, dom) => {
                     return (
                         <Dropdown
