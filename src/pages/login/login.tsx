@@ -8,26 +8,19 @@ import IconFont from "@/components/iconfont/icon";
 import {UserLogin} from "@/model/user";
 import {useNavigate} from "react-router-dom";
 import {setUser} from "@/store/user";
-
+import Captcha from "@/components/captcha/captcha";
 
 export default () => {
     const api = new NoAuthApi();
     const [messageApi, contextHolder] = message.useMessage();
     const user = useSelector((state: RootState) => state.User);
     useEffect(() => {
-        init();
         store.dispatch(setUser({}))
         localStorage.clear()
         messageApi.info("请登录")
     }, []);
     const navigate = useNavigate();
-    const init = () => {
-        api.getCaptcha().then(r => {
-            console.log(r);
-        }).catch(e => {
-            console.log(e);
-        });
-    }
+
     const Login = (values: any) => {
         api.login(values.username, values.password).then((r: UserLogin) => {
             localStorage.setItem("token", r.access_token);
@@ -77,7 +70,14 @@ export default () => {
                             </Row>
                         </Form.Item>
                         <Form.Item className="login-form—submit">
-                            <Button type="primary" htmlType="submit" className="login-form—submit-button">
+                        <Captcha onClick={
+                            () => {
+                                messageApi.info("验证码已发送")
+                            }
+                        }/>
+                        </Form.Item>
+                        <Form.Item className="login-form—submit">
+                            <Button type="primary" htmlType="submit" block>
                                 登录
                             </Button>
                         </Form.Item>
