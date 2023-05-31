@@ -22,14 +22,9 @@ export default (props: CaptchaProps) => {
             setCaptcha(r)
         })
     }
-    const openCaptcha = () => {
-        getCaptcha()
-        setCaptchaVisible(true)
+    const changeCaptcha = () => {
+        setCaptchaVisible(!captchaVisible)
     }
-    const closeCaptcha = () => {
-        setCaptchaVisible(false)
-    }
-
 
     return (
         <div className="captcha">
@@ -46,7 +41,7 @@ export default (props: CaptchaProps) => {
                 }} className="captcha-content-body"/>
                 <Row className="captcha-content-footer" justify={"space-between"}>
                     <Col span={6} className="captcha-content-footer-icon">
-                        <IconFont type={"yg-icon-quxiao"} onClick={closeCaptcha}/>
+                        <IconFont type={"yg-icon-quxiao"} onClick={changeCaptcha}/>
                         <IconFont type={"yg-icon-zhongxinshangchuan"} onClick={getCaptcha}/>
                     </Col>
 
@@ -57,7 +52,7 @@ export default (props: CaptchaProps) => {
 
 
             </div>
-            <Button className="captcha-button" onClick={openCaptcha} block type="primary">获取验证码</Button>
+            <Button className="captcha-button" onClick={changeCaptcha} block type="primary">获取验证码</Button>
         </div>
     )
 }
