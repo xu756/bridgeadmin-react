@@ -1,5 +1,5 @@
 import './captcha.scss'
-import {Button, Col, Row} from "antd";
+import {Button, Col, Row,Popconfirm} from "antd";
 import {NoAuthApi} from "@/utils/api";
 import {useEffect, useState} from "react";
 import {CaptchaRes} from "@/model/Api";
@@ -12,6 +12,7 @@ interface CaptchaProps {
 export default (props: CaptchaProps) => {
     const api = new NoAuthApi();
     const [captcha, setCaptcha] = useState({} as CaptchaRes)
+    const [captchaVisible, setCaptchaVisible] = useState(false)
     useEffect(() => {
         getCaptcha()
     }, [])
@@ -22,13 +23,18 @@ export default (props: CaptchaProps) => {
         })
     }
     const openCaptcha = () => {
-
+        getCaptcha()
+        setCaptchaVisible(true)
+    }
+    const closeCaptcha = () => {
+        setCaptchaVisible(false)
     }
 
 
     return (
         <div className="captcha">
-            <div className="captcha-content">
+            <div style={{display: captchaVisible ? "block" : "none"}}
+                className={captchaVisible ? "captcha-content animate__animated animate__fadeInUp" : "captcha-content animate__animated animate__fadeOut"}>
                 <div className="captcha-content-header">
                     <div className="captcha-content-header-text"> 请在下图依次点击</div>
                     <div className="captcha-content-header-thumb" style={{
@@ -40,7 +46,7 @@ export default (props: CaptchaProps) => {
                 }} className="captcha-content-body"/>
                 <Row className="captcha-content-footer" justify={"space-between"}>
                     <Col span={6} className="captcha-content-footer-icon">
-                        <IconFont type={"yg-icon-quxiao"}/>
+                        <IconFont type={"yg-icon-quxiao"} onClick={closeCaptcha}/>
                         <IconFont type={"yg-icon-zhongxinshangchuan"} onClick={getCaptcha}/>
                     </Col>
 

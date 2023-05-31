@@ -1,14 +1,13 @@
 .captcha {
   width: 100%;
-
+  position: relative;
   &-content {
     position: absolute;
     z-index: 999;
     width: 300px;
     bottom: 40px;
-    left: 50%;
+    left: calc(50% - 150px);
     padding: 10px;
-    transform: translateX(-50%);
     background: #ffffff;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
     word-break: break-all;
