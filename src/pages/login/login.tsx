@@ -2,13 +2,14 @@ import "./login.scss";
 import {Button, Checkbox, Col, Form, Input, Row, message} from 'antd';
 import {useSelector} from 'react-redux';
 import store, {RootState} from '@/store';
-import {useEffect} from "react";
-import { NoAuthApi} from "@/utils/api";
+import {useEffect, useState} from "react";
+import {NoAuthApi} from "@/utils/api";
 import IconFont from "@/components/iconfont/icon";
 import {UserLogin} from "@/model/user";
 import {useNavigate} from "react-router-dom";
 import {setUser} from "@/store/user";
-import Captcha from "@/components/captcha/captcha";
+import Captcha from "@/components/captcha";
+import {CaptchaRes} from "@/model/Api";
 
 export default () => {
     const api = new NoAuthApi();
@@ -17,10 +18,20 @@ export default () => {
     useEffect(() => {
         store.dispatch(setUser({}))
         localStorage.clear()
+        init()
         messageApi.info("请登录")
     }, []);
     const navigate = useNavigate();
-
+    // 验证码配置
+    const [captcha, setCaptcha] = useState({} as CaptchaRes)
+    const init = () => {
+        getCaptcha()
+    }
+    const getCaptcha = () => {
+        api.getCaptcha().then(r => {
+            setCaptcha(r)
+        })
+    }
     const Login = (values: any) => {
         api.login(values.username, values.password).then((r: UserLogin) => {
             localStorage.setItem("token", r.access_token);
@@ -70,11 +81,7 @@ export default () => {
                             </Row>
                         </Form.Item>
                         <Form.Item className="login-form—submit">
-                        <Captcha onClick={
-                            () => {
-                                messageApi.info("验证码已发送")
-                            }
-                        }/>
+                            <Captcha data={captcha}/>
                         </Form.Item>
                         <Form.Item className="login-form—submit">
                             <Button type="primary" htmlType="submit" block>
