@@ -28,6 +28,10 @@ export default (prop: CaptchaValue) => {
         setDots([...dots, newDot]);
     };
 
+    const handleDotClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
+    };
+
     return (
         <div
             className="captcha"
@@ -57,6 +61,7 @@ export default (prop: CaptchaValue) => {
                         key={dot.index}
                         className="captcha-dot"
                         style={{ top: dot.y - 11, left: dot.x - 11 }}
+                        onClick={handleDotClick}
                     >
                         {dot.index}
                     </div>
