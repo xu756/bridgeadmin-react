@@ -1,7 +1,7 @@
-import { CaptchaRes } from "@/model/Api";
+import {CaptchaRes} from "@/model/Api";
 import IconFont from "@/components/iconfont/icon";
-import { Button } from "antd";
-import React, { useState } from "react";
+import {Button} from "antd";
+import React, {useState} from "react";
 
 interface CaptchaValue {
     value: CaptchaRes;
@@ -19,12 +19,13 @@ export default (prop: CaptchaValue) => {
     const [dots, setDots] = useState<Dot[]>([]);
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        const { offsetX, offsetY } = event.nativeEvent;
+        const {offsetX, offsetY} = event.nativeEvent;
         const newDot: Dot = {
             x: offsetX,
             y: offsetY,
             index: dots.length + 1,
         };
+        // console.log(newDot);
         setDots([...dots, newDot]);
     };
 
@@ -60,7 +61,7 @@ export default (prop: CaptchaValue) => {
                     <div
                         key={dot.index}
                         className="captcha-dot"
-                        style={{ top: dot.y - 11, left: dot.x - 11 }}
+                        style={{top: dot.y, left: dot.x}}
                         onClick={handleDotClick}
                     >
                         {dot.index}
@@ -70,10 +71,10 @@ export default (prop: CaptchaValue) => {
             <div className="captcha-footer">
                 <div className="captcha-footer-icon">
                     <div className="captcha-footer-close">
-                        <IconFont type={"yg-icon-quxiao"} />
+                        <IconFont type={"yg-icon-quxiao"}/>
                     </div>
                     <div className="captcha-footer-refresh">
-                        <IconFont type={"yg-icon-zhongxinshangchuan"} />
+                        <IconFont type={"yg-icon-zhongxinshangchuan"}/>
                     </div>
                 </div>
                 <Button block type="primary" className="captcha-footer-btn">
