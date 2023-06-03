@@ -7,7 +7,6 @@ const BASE_URL = '/appserver';
 // 创建axios实例
 const createClient = () => {
     const instance = axios.create({
-        baseURL: BASE_URL,
         timeout: 1500,
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
