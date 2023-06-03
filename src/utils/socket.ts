@@ -14,12 +14,19 @@ const createClient = () => {
             Authorization: 'Bearer ' + localStorage.getItem('token'),
         },
     });
-
     // 请求拦截器
     instance.interceptors.request.use(
         (config) => {
             config.url = BASE_URL + config.url;
             // 在发送请求之前做些什么
+            if (window.location.pathname !== '/login') {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    config.headers.Authorization = 'Bearer ' + token;
+                } else {
+                    window.location.href = '/login';
+                }
+            }
 
             // 设置加载
             store.dispatch(openLoad());
@@ -31,6 +38,7 @@ const createClient = () => {
             return Promise.reject(error);
         }
     );
+
 
     // 响应拦截器
     instance.interceptors.response.use(

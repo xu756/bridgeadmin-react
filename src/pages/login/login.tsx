@@ -35,12 +35,14 @@ export default () => {
     const Login = (values: any) => {
         api.login(values.username, values.password).then((r: UserLogin) => {
             localStorage.setItem("token", r.access_token);
-            setTimeout(() => {
-                navigate("/home");
-            }, 1000);
-        })
+            navigate("/home");
+        });
     };
 
+    const initFailed = {
+        username: "admin",
+        password: "123456"
+    }
     const LoginFailed = (errorInfo: any) => {
         messageApi.error("请输入用户名和密码");
     };
@@ -54,6 +56,7 @@ export default () => {
                 <div className="login-box-right">
                     <Form onFinish={Login}
                           onFinishFailed={LoginFailed}
+                          initialValues={initFailed}
                     >
                         <Form.Item
                             name={"username"}
@@ -80,9 +83,9 @@ export default () => {
                                 </Col>
                             </Row>
                         </Form.Item>
-                        <Form.Item className="login-form—submit">
-                            <Captcha data={captcha}/>
-                        </Form.Item>
+                        {/*<Form.Item className="login-form—submit">*/}
+                        {/*    <Captcha data={captcha}/>*/}
+                        {/*</Form.Item>*/}
                         <Form.Item className="login-form—submit">
                             <Button type="primary" htmlType="submit" block>
                                 登录
