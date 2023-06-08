@@ -24,7 +24,6 @@ export default defineConfig({
             '/appserver': {
                 target: 'https://xu756.top/',
                 changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/appserver/, '')
             }
         }
     }
