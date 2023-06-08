@@ -10,7 +10,7 @@ const createClient = () => {
         timeout: 1500,
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            Authorization: 'Bearer ' + sessionStorage.getItem('token'),
         },
     });
     // 请求拦截器
@@ -19,7 +19,7 @@ const createClient = () => {
             config.url = BASE_URL + config.url;
             // 在发送请求之前做些什么
             if (window.location.pathname !== '/login') {
-                const token = localStorage.getItem('token');
+                const token = sessionStorage.getItem('token');
                 if (token) {
                     config.headers.Authorization = 'Bearer ' + token;
                 } else {

@@ -17,7 +17,7 @@ export default () => {
     const user = useSelector((state: RootState) => state.User);
     useEffect(() => {
         store.dispatch(setUser({}))
-        localStorage.clear()
+        sessionStorage.clear()
         init()
         messageApi.info("请登录")
     }, []);
@@ -34,7 +34,7 @@ export default () => {
     }
     const Login = (values: any) => {
         api.login(values.username, values.password).then((r: UserLogin) => {
-            localStorage.setItem("token", r.access_token);
+            sessionStorage.setItem("token", r.access_token);
             navigate("/home");
         });
     };
