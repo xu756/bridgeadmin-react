@@ -7,6 +7,7 @@ import Charts from "../components/charts";
 import Admin from "../assets/images/admin.svg"
 import BSvg from "../assets/images/b.svg"
 import Login from "../pages/login/login";
+import Config from "@/pages/config";
 export const appList = [
     {
         icon: BSvg,
@@ -34,8 +35,8 @@ export const route = {
             icon: <AppstoreAddOutlined/>,
             routes: [
                 {
-                    path: '/admin/page1',
-                    name: '一级页面',
+                    path: '/admin/config',
+                    name: '管理配置',
                 },
             ],
         },
@@ -75,11 +76,11 @@ export const homeRouter: routerItem[] = [
     }, {
         path: "/admin",
         auth: true,
-        element: <Navigate to="/admin/page1"/>,
+        element: <Navigate to="/admin/config"/>,
     }, {
-        path: "/admin/page1",
+        path: "/admin/config",
         auth: true,
-        element: <h1>管理页面</h1>,
+        element: <Config/>,
     }
 ]
 
