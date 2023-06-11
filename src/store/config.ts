@@ -1,14 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {IConfig} from "@/types";
 
-interface IConfig {
-    logo?: string
-    name?: string
-    loading: number
-}
+
 
 const initialState: IConfig = {
     logo: '/logo.svg',
-    name: '',
+    title: '云工科技',
+    description: '管理系统',
     loading: 0,
 }
 

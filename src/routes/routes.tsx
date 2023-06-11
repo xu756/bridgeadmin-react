@@ -8,6 +8,8 @@ import Admin from "../assets/images/admin.svg"
 import BSvg from "../assets/images/b.svg"
 import Login from "../pages/login/login";
 import Config from "@/pages/config";
+import Editor from "@/components/editor/editor";
+
 export const appList = [
     {
         icon: BSvg,
@@ -37,6 +39,10 @@ export const route = {
                 {
                     path: '/admin/config',
                     name: '管理配置',
+                },
+                {
+                    path: '/admin/edit',
+                    name: '富文本编辑器',
                 },
             ],
         },
@@ -81,6 +87,10 @@ export const homeRouter: routerItem[] = [
         path: "/admin/config",
         auth: true,
         element: <Config/>,
+    }, {
+        path: "/admin/edit",
+        auth: true,
+        element: <Editor/>
     }
 ]
 
@@ -105,7 +115,7 @@ export const indexRoutes: routerItem[] = [
     {
         path: "/login",
         auth: false,
-        element:<Login/>,
+        element: <Login/>,
     },
     {
         path: "/charts",
