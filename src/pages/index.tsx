@@ -18,7 +18,7 @@ import {Route, Routes} from "react-router-dom";
 import LogoSvg from "../assets/images/logo.svg";
 import IconFont, {IconUrl} from "../components/iconfont/icon";
 import AuthRoute from "../routes/AuthRouter";
-import {AdminApi} from "@/utils/api";
+// import {AdminApi} from "@/utils/api";
 import store, {RootState} from "@/store";
 import {setUser} from "@/store/user";
 import {useSelector} from "react-redux";
@@ -71,10 +71,10 @@ export default () => {
     const [loading, setLoading] = useState(true);
     const [collapsed, setCollapsed] = useState(false);
     useEffect(() => {
-        const api = new AdminApi();
-        api.getUserInfo().then(r => {
-            store.dispatch(setUser(r));
-        })
+        // const api = new AdminApi();
+        // api.getUserInfo().then(r => {
+        //     store.dispatch(setUser(r));
+        // })
     }, [])
     useEffect(() => {
         setPathname(window.location.pathname)

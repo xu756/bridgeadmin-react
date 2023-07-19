@@ -5,10 +5,10 @@ export default ({children, path}: any) => {
     const navigate = useNavigate();
     const token = sessionStorage.getItem("token") || "";
 
-    useEffect(() => {
-    if (!token && path !== "/login") {
-            navigate("/login")
-        }
-    }, [token, location.pathname])
+    // useEffect(() => {
+    // if (!token && path !== "/login") {
+    //         navigate("/login")
+    //     }
+    // }, [token, location.pathname])
     return children
 }

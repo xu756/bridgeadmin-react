@@ -12,31 +12,17 @@ import Captcha from "@/components/captcha";
 import {CaptchaRes} from "@/model/Api";
 
 export default () => {
-    const api = new NoAuthApi();
     const [messageApi, contextHolder] = message.useMessage();
     const user = useSelector((state: RootState) => state.User);
     useEffect(() => {
         store.dispatch(setUser({}))
         sessionStorage.clear()
-        init()
         messageApi.info("请登录")
     }, []);
     const navigate = useNavigate();
-    // 验证码配置
-    const [captcha, setCaptcha] = useState({} as CaptchaRes)
-    const init = () => {
-        getCaptcha()
-    }
-    const getCaptcha = () => {
-        api.getCaptcha().then(r => {
-            setCaptcha(r)
-        })
-    }
+
     const Login = (values: any) => {
-        api.login(values.username, values.password).then((r: UserLogin) => {
-            sessionStorage.setItem("token", r.access_token);
-            navigate("/home");
-        });
+        navigate("/home");
     };
 
     const initFailed = {
